@@ -204,6 +204,9 @@ module.exports = {
             {title: 'dbo:knownFor'},
             {title: 'dbo:deathDate'},
             {title: 'dbp:children'}
+        ], 
+        literals: [
+            {title: 'mhdb-resources:'}
         ]
     }
 }

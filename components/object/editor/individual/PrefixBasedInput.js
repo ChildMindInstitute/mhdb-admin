@@ -260,7 +260,7 @@ class PrefixBasedInput extends React.Component {
             alist = tmp;
         }else{
             //default autocomplete list
-            alist = [].concat(autocompletelist.ldrClasses, autocompletelist.ldrProperties, autocompletelist.ldrLiterals, autocompletelist.properties, autocompletelist.classes);
+            alist = [].concat(autocompletelist.ldrClasses, autocompletelist.ldrProperties, autocompletelist.ldrLiterals, autocompletelist.properties, autocompletelist.classes, autocompletelist.literals);
         }
         let placeholder = '';
         //placeholder can come from config or direct property
