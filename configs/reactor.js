@@ -14,34 +14,25 @@ export default {
                 datasetViewer: ['BasicResourceList'],
                 datasetLabel: ['graphdb']
             },
-            //adding configs for dbpedia
-            'http://live.dbpedia.org/sparql': {
-                datasetLabel: ['pedia'],
-                readOnly: 1,
-                allowInlineConfig: 0,
-                resourceFocusType: ['http://dbpedia.org/ontology/University'],
-                resourceLabelProperty: ['http://xmlns.com/foaf/0.1/name'],
-                //resourceFocusType: ['http://dbpedia.org/ontology/University'],
-            },
-            'http://localhost:7200': {
-                //resourceFocusType: [],
-                //datasetReactor: ['Dataset'],
-                //datasetViewer: ['BasicResourceList'],
-                datasetLabel: ['projects'],
-                allowPropertyNew: 1,
-                readOnly: 0,
-                allowResourceNew: 1,
-                allowResourceClone: 1,
-                allowResourceDelete: 1,
-                templateResource: ['http://www.purl.org/mentalhealth/mhdb-resources#Spire'], 
-                resourceFocusType: ['http://www.purl.org/mentalhealth/mhdb-resources#Project'],
-                allowExtension: 1,
-                //hasBlankNode: 1,
-                allowNewValue: 1,
-                allowPropertyDelete: 1,
-                objectIViewer: ['PrefixBasedView'],
-                objectIEditor: ['PrefixBasedInput'],
-            },
+            // 'http://localhost:7200': {
+            //     //resourceFocusType: [],
+            //     //datasetReactor: ['Dataset'],
+            //     //datasetViewer: ['BasicResourceList'],
+            //     datasetLabel: ['projects'],
+            //     allowPropertyNew: 1,
+            //     readOnly: 0,
+            //     allowResourceNew: 1,
+            //     allowResourceClone: 1,
+            //     allowResourceDelete: 1,
+            //     templateResource: ['http://www.purl.org/mentalhealth/mhdb-resources#Spire'], 
+            //     resourceFocusType: ['http://www.purl.org/mentalhealth/mhdb-resources#Project'],
+            //     allowExtension: 1,
+            //     //hasBlankNode: 1,
+            //     allowNewValue: 1,
+            //     allowPropertyDelete: 1,
+            //     objectIViewer: ['PrefixBasedView'],
+            //     objectIEditor: ['PrefixBasedInput'],
+            // },
             'http://51.68.79.244:7200': {
                 //resourceFocusType: [],
                 //datasetReactor: ['Dataset'],
@@ -61,13 +52,13 @@ export default {
                 objectIViewer: ['PrefixBasedView'],
                 objectIEditor: ['PrefixBasedInput'],
             },
-            'http://54.210.58.138:7200/repositories/mhdb': {
-                //resourceFocusType: [],
-                //datasetReactor: ['Dataset'],
-                //datasetViewer: ['BasicResourceList'],
-                datasetLabel: ['graphdb2'],
-                //resourceFocusType: ['https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#User']
-            },
+            // 'http://54.210.58.138:7200/repositories/mhdb': {
+            //     //resourceFocusType: [],
+            //     //datasetReactor: ['Dataset'],
+            //     //datasetViewer: ['BasicResourceList'],
+            //     datasetLabel: ['graphdb2'],
+            //     //resourceFocusType: ['https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#User']
+            // },
             //authentication graph
             'http://ld-r.org/users': {
                 readOnly: 0,
@@ -92,14 +83,6 @@ export default {
                 datasetLabel: ['LD-R Mapping Configurations'],
                 resourceLabelProperty: ['http://www.w3.org/2000/01/rdf-schema#label']
             },
-            //example reactor config
-            'http://dbpedia.org/sparql': {
-                readOnly: 1,
-                allowInlineConfig: 0,
-                resourceFocusType: ['http://dbpedia.org/ontology/University'],
-                resourceLabelProperty: ['http://xmlns.com/foaf/0.1/name'],
-                datasetLabel: ['DBpedia Universities']
-            }
         },
         resource: {
             'generic': {
