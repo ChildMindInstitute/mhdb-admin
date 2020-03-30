@@ -564,25 +564,25 @@ export default {
                     includeOnly: ['classes']
                 }
             },
-            'http://localhost:7200': {
-                'http://www.w3.org/2000/01/rdf-schema#label': {
-                    allowExtension: 0,
-                },
-                'http://www.purl.org/mentalhealth/mhdb-resources#hasProjectCategory': {
-                    objectIViewer: ['BasicLinkedIndividualView'],
-                    objectIEditor: ['PrefixBasedInput'],
-                    decodeURIComponent: 1,
-                },
-                'http://www.purl.org/mentalhealth/mhdb-resources#isMaintainedByGroup': {
-                    objectIViewer: ['BasicLinkedIndividualView'],
-                },
-                'http://www.purl.org/mentalhealth/mhdb-resources#isReferencedBy': {
-                    objectIViewer: ['BasicLinkedIndividualView'],
-                },
-                'http://www.purl.org/mentalhealth/mhdb-resources#hasWebsite': {
-                    objectIViewer: ['BasicIndividualInput'],
-                }
-            },
+            // 'http://localhost:7200': {
+            //     'http://www.w3.org/2000/01/rdf-schema#label': {
+            //         allowExtension: 0,
+            //     },
+            //     'http://www.purl.org/mentalhealth/mhdb-resources#hasProjectCategory': {
+            //         objectIViewer: ['BasicLinkedIndividualView'],
+            //         objectIEditor: ['PrefixBasedInput'],
+            //         decodeURIComponent: 1,
+            //     },
+            //     'http://www.purl.org/mentalhealth/mhdb-resources#isMaintainedByGroup': {
+            //         objectIViewer: ['BasicLinkedIndividualView'],
+            //     },
+            //     'http://www.purl.org/mentalhealth/mhdb-resources#isReferencedBy': {
+            //         objectIViewer: ['BasicLinkedIndividualView'],
+            //     },
+            //     'http://www.purl.org/mentalhealth/mhdb-resources#hasWebsite': {
+            //         objectIViewer: ['BasicIndividualInput'],
+            //     }
+            // },
             'http://51.68.79.244:7200': {
                 'http://www.w3.org/2000/01/rdf-schema#label': {
                     allowExtension: 0,

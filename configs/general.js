@@ -18,7 +18,7 @@ export default {
     useGoogleRecaptcha: 0,
 
     //the domain name under which basic dynamic resources and user resources will be defined
-    baseResourceDomain: ['http://ld-r.org'],
+    baseResourceDomain: ['http://www.purl.org/mentalhealth/mhdb-resources#'],
 
     //will enable email notifications
     enableEmailNotifications: 0,
