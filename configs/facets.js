@@ -71,5 +71,13 @@ export default {
         //         }
         //     }
         // }
+        'http://51.68.79.244:7200': {
+            list: ['http://www.purl.org/mentalhealth/mhdb-resources#hasProjectCategory'],
+            config: {
+                'http://www.purl.org/mentalhealth/mhdb-resources#hasProjectCategory': {
+                    label: ['Category'],
+                },
+            }
+        },
     }
 };
