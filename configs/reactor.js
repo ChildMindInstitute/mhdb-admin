@@ -52,6 +52,12 @@ export default {
                 objectIViewer: ['PrefixBasedView'],
                 objectIEditor: ['PrefixBasedInput'],
             },
+            // 'history': {
+            //     datasetLabel: ['history'],
+            //     readOnly: 1,
+            //     resourceFocusType: ['http://www.ontotext.com/at/history'],
+            //     resourceLabelProperty: ['http://www.ontotext.com/at/object']
+            // },
             // 'http://54.210.58.138:7200/repositories/mhdb': {
             //     //resourceFocusType: [],
             //     //datasetReactor: ['Dataset'],

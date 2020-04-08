@@ -27,6 +27,9 @@ export default {
         'http://51.68.79.244:7200': {
             host: '51.68.79.244', port: 7200, path: '/repositories/test', graphName: 'default', endpointType: 'graphdb'
         },
+        // 'history': {
+        //     host: '51.68.79.244', port: 7200, path: '/repositories/test', graphName: 'default', endpointType: 'graphdb'
+        // },
         // 'http://54.210.58.138:7200/repositories/mhdb': {
         //     host: '54.210.58.138', port: 7200, path: '/repositories/mhdb', endpointType: 'graphdb'
         // },

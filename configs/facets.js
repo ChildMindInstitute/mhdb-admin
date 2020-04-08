@@ -79,5 +79,13 @@ export default {
                 },
             }
         },
+        // 'history': {
+        //     list: ['http://www.ontotext.com/at/subject', 'http://www.ontotext.com/at/predicate', 'http://www.ontotext.com/at/insert'],
+        //     config: {
+        //         'http://www.ontotext.com/at/subject': {
+        //             label: ['Subject'],
+        //         },
+        //     }
+        // },
     }
 };
