@@ -76,6 +76,7 @@ export default {
             config: {
                 'http://www.purl.org/mentalhealth/mhdb-resources#hasProjectCategory': {
                     label: ['Category'],
+                    hasLinkedValue: 1
                 },
             }
         },

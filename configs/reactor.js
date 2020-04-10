@@ -51,6 +51,7 @@ export default {
                 allowPropertyDelete: 1,
                 objectIViewer: ['PrefixBasedView'],
                 objectIEditor: ['PrefixBasedInput'],
+                displayQueries: 1,
             },
             // 'history': {
             //     datasetLabel: ['history'],
