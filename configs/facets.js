@@ -80,6 +80,30 @@ export default {
                 },
             }
         },
+        'chills': {
+            list: ['http://examples.ontotext.com/family#ResearchStudy',
+                'http://examples.ontotext.com/family#ResearchStudy_Year',
+                'http://examples.ontotext.com/family#StimulusCathegory',
+                'http://examples.ontotext.com/family#SubjectiveData',
+                'http://examples.ontotext.com/family#Unit'],
+            config: {
+                'http://examples.ontotext.com/family#ResearchStudy': {
+                    hasLinkedValue: 1
+                },
+                'http://examples.ontotext.com/family#ResearchStudy_Year': {
+                    hasLinkedValue: 1
+                },
+                'http://examples.ontotext.com/family#StimulusCathegory': {
+                    hasLinkedValue: 1
+                },
+                'http://examples.ontotext.com/family#SubjectiveData': {
+                    hasLinkedValue: 1
+                },
+                'http://examples.ontotext.com/family#Unit': {
+                    hasLinkedValue: 1
+                },
+            }
+        },
         // 'history': {
         //     list: ['http://www.ontotext.com/at/subject', 'http://www.ontotext.com/at/predicate', 'http://www.ontotext.com/at/insert'],
         //     config: {

@@ -53,6 +53,17 @@ export default {
                 objectIEditor: ['PrefixBasedInput'],
                 displayQueries: 1,
             },
+            'chills': {
+                //resourceFocusType: [],
+                //datasetReactor: ['Dataset'],
+                //datasetViewer: ['BasicResourceList'],
+                datasetLabel: ['chills papers'],
+                allowPropertyNew: 1,
+                readOnly: 1,
+                resourceFocusType: ['http://examples.ontotext.com/family#Papers'],
+                objectIViewer: ['PrefixBasedView'],
+                objectIEditor: ['PrefixBasedInput'],
+            },
             // 'history': {
             //     datasetLabel: ['history'],
             //     readOnly: 1,

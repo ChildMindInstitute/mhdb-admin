@@ -27,6 +27,9 @@ export default {
         'http://51.68.79.244:7200': {
             host: '51.68.79.244', port: 7200, path: '/repositories/test', graphName: 'default', endpointType: 'graphdb'
         },
+        'chills': {
+            host: '51.68.79.244', port: 7200, path: '/repositories/test', graphName: 'default', endpointType: 'graphdb'
+        },
         // 'history': {
         //     host: '51.68.79.244', port: 7200, path: '/repositories/test', graphName: 'default', endpointType: 'graphdb'
         // },
