@@ -1,4 +1,4 @@
-@prefix : <https://github.com/ali1k/ld-reactor/blob/master/plugins/authentication/schema/users.ttl#> .
+@prefix : <https://github.com/charlie42/ld-r-mhdb/blob/master/plugins/authentication/schema/users.ttl#> .
 @prefix ldr: <https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
@@ -13,9 +13,9 @@
 <https://ld-r.org/user/admin> a foaf:Person, ldr:User ;
       foaf:firstName "Admin" ;
       foaf:lastName "User" ;
-      foaf:organization <http://dbpedia.org/resource/VU_University_Amsterdam>;
-      foaf:mbox <mailto:a.khalili@vu.nl> ;
-      foaf:homepage <http://ali1k.com> ;
+      #foaf:organization <http://dbpedia.org/resource/VU_University_Amsterdam>;
+      foaf:mbox <mailto:oninfrared@gmail.com> ;
+      #foaf:homepage <http://ali1k.com> ;
       foaf:accountName "admin" ;
       foaf:member ldr:NormalUser ;
       #password: demo1234
