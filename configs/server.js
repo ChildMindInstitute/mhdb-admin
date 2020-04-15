@@ -27,6 +27,9 @@ export default {
         'http://51.68.79.244:7200': {
             host: '51.68.79.244', port: 7200, path: '/repositories/test', graphName: 'default', endpointType: 'graphdb'
         },
+        'http://ld-r.org/users': {
+            host: '51.68.79.244', port: 7200, path: '/repositories/users', graphName: 'default', endpointType: 'graphdb'
+        },
         'admin': {
             host: '51.68.79.244', port: 7200, path: '/repositories/test', graphName: 'default', endpointType: 'graphdb'
         },

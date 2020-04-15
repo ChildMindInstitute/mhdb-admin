@@ -56,6 +56,7 @@ class ResourceQuery{
     }
     deleteResource(endpointParameters, user, graphName, resourceURI) {
         //todo: consider different value types
+        //todo: delete if superuser, otherwise mark for deletion
         let {gStart, gEnd} = this.prepareGraphName(graphName);
         this.query = `
         DELETE {
