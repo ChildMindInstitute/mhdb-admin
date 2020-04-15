@@ -80,6 +80,14 @@ export default {
                 },
             }
         },
+        'admin': {
+            list: ['https://github.com/charlie42/ld-r-mhdb/blob/master/vocabulary/ld-r-mhdb.ttl#isPending', 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type'],
+            config: {
+                'https://github.com/charlie42/ld-r-mhdb/blob/master/vocabulary/ld-r-mhdb.ttl#isPending': {
+                    
+                },
+            }
+        },
         'chills': {
             list: ['http://examples.ontotext.com/family#ResearchStudy',
                 'http://examples.ontotext.com/family#ResearchStudy_Year',
