@@ -397,6 +397,7 @@ export default {
                 graphName = endpointParameters.graphName;
                 query = queryObject.getPrefixes() + queryObject.annotateResource(endpointParameters, user, targetDataset, graphName, params.resource, propertyURI, params.annotations, params.inNewDataset, {api: params.api});
                 //console.log(query);
+                alert(query);
                 //build http uri
                 //send request
                 HTTPQueryObject = getHTTPQuery('update', query, endpointParameters, outputFormat);
@@ -676,6 +677,7 @@ export default {
             getDynamicEndpointParameters(user, datasetURI, (endpointParameters)=>{
                 graphName = endpointParameters.graphName;
                 query = queryObject.getPrefixes() + queryObject.deleteResource(endpointParameters, user, graphName, params.resourceURI);
+                console.log(query);
                 HTTPQueryObject = getHTTPQuery('update', query, endpointParameters, outputFormat);
                 rp.post({uri: HTTPQueryObject.uri, form: HTTPQueryObject.params}).then(function(res){
                     if(enableLogs){

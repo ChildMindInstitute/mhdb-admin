@@ -5,6 +5,7 @@ class ResourceQuery{
         this.prefixes=`
         PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
         PREFIX ldr: <https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#>
+        PREFIX ldr-mhdb: <https://github.com/charlie42/ld-r-mhdb/blob/master/vocabulary/ld-r-mhdb.ttl#>
         PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
         PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
         PREFIX owl: <http://www.w3.org/2002/07/owl#>
@@ -99,8 +100,11 @@ class ResourceQuery{
         //todo: consider different value types
         let {gStart, gEnd} = this.prepareGraphName(graphName);
         let userSt = '';
+        let isPending = '';
         if(user && user.accountName !== 'open' && !parseInt(user.isSuperUser)){
             userSt=` ldr:createdBy <${user.id}> ;`;
+            // if added not by superuser - add property isPending
+            isPending=` ldr-mhdb:isPending "true"^^xsd:boolean ;`;
         }
         let date = new Date();
         let currentDate = date.toISOString(); //"2011-12-19T15:28:46.493Z"
@@ -111,6 +115,7 @@ class ResourceQuery{
                 ${gStart}
                     <${newResourceURI}> ?p ?o ;
                     ${userSt}
+                    ${isPending} 
                     ldr:createdOn "${currentDate}"^^xsd:dateTime .
                 ${gEnd}
             } WHERE {

@@ -24,7 +24,7 @@ export default {
     enableEmailNotifications: 0,
 
     //will put all update actions in log folder
-    enableLogs: 0,
+    enableLogs: 1,
 
     //if provided will track the users on your LD-R instance
     googleAnalyticsID: '',
