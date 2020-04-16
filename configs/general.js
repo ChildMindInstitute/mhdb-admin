@@ -12,7 +12,7 @@ export default {
     //graph that stores users data, must be loaded beforehand
     authDatasetURI: ['http://ld-r.org/users'],
     //will allow super users to confirm and activate regiastered users
-    enableUserConfirmation: 0,
+    enableUserConfirmation: 1,
     //if enabled will allow a recaptcha box in the registration form
     //note: if it is enabled, you need to set the key parameteres for recaptcha in the  server.js file
     useGoogleRecaptcha: 0,

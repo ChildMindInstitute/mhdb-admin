@@ -1,11 +1,28 @@
 'use strict';
 import {getHTTPQuery, getHTTPGetURL} from './utils/helpers';
 import {getDynamicEndpointParameters} from './utils/dynamicHelpers';
-import {authDatasetURI, enableAuthentication, enableEmailNotifications, baseResourceDomain} from '../configs/general';
+import {authDatasetURI, enableAuthentication, enableEmailNotifications, enableLogs, baseResourceDomain} from '../configs/general';
 import {sendMail} from '../plugins/email/handleEmail';
 import AdminQuery from './sparql/AdminQuery';
 import AdminUtil from './utils/AdminUtil';
 import rp from 'request-promise';
+import fs from 'fs';
+import log4js from 'log4js';
+/*-------------log updates-------------*/
+let log;
+if(enableLogs){
+    let currentDate = new Date().toDateString().replace(/\s/g, '-');
+    let logPath = './logs/' + currentDate + '.log';
+    if (fs.existsSync(logPath)) {
+        //create a new file when restarting the server
+        logPath = './logs/' + currentDate + '_' + Date.now() + '.log';
+    }
+    log4js.configure({
+        appenders: { ldr: { type: 'file', filename: logPath } },
+        categories: { default: { appenders: ['ldr'], level: 'info' } }
+    });
+    log = log4js.getLogger('ldr');
+}
 /*-------------config-------------*/
 let user;
 const headers = {'Accept': 'application/sparql-results+json'};
@@ -20,6 +37,7 @@ export default {
     // At least one of the CRUD methods is Required
     read: (req, resource, params, config, callback) => {
         if (resource === 'admin.userslist') {
+            //debugger
             //SPARQL QUERY
             datasetURI = (params.id ? params.id : authDatasetURI[0]);
             if(enableAuthentication){
@@ -40,7 +58,10 @@ export default {
                 graphName = endpointParameters.graphName;
                 query = queryObject.getUsers(endpointParameters, graphName);
                 //send request
-                rp.get({uri: getHTTPGetURL(getHTTPQuery('read', query, endpointParameters, outputFormat)), headers: headers}).then(function(res){
+                rp.get({uri: getHTTPGetURL(getHTTPQuery('read', query, endpointParameters, outputFormat)), headers: headers}).then(function(res){ 
+                    if(enableLogs){
+                        log.info('\n User: ' + user.accountName + ' \n Query: \n' + query);
+                    }
                     callback(null, {
                         datasetURI: datasetURI,
                         graphName: graphName,
@@ -48,6 +69,9 @@ export default {
                     });
                 }).catch(function (err) {
                     console.log(err);
+                    if(enableLogs){
+                        log.info('\n User: ' + user.accountName + '\n Status Code: \n' + err.statusCode + '\n Error Msg: \n' + err.message + ' \n Query: \n' + query);
+                    }
                     callback(null, {datasetURI: datasetURI, graphName: graphName, users: []});
                 });
             });
@@ -86,6 +110,9 @@ export default {
                     callback(null, {});
                 }).catch(function (err) {
                     console.log(err);
+                    if(enableLogs){
+                        log.info('\n User: ' + user.accountName + '\n Status Code: \n' + err.statusCode + '\n Error Msg: \n' + err.message + ' \n Query: \n' + query);
+                    }
                     callback(null, {});
                 });
             });
@@ -128,6 +155,9 @@ export default {
                     callback(null, {});
                 }).catch(function (err) {
                     console.log(err);
+                    if(enableLogs){
+                        log.info('\n User: ' + user.accountName + '\n Status Code: \n' + err.statusCode + '\n Error Msg: \n' + err.message + ' \n Query: \n' + query);
+                    }
                     callback(null, {});
                 });
             });
@@ -163,6 +193,9 @@ export default {
                     callback(null, {});
                 }).catch(function (err) {
                     console.log(err);
+                    if(enableLogs){
+                        log.info('\n User: ' + user.accountName + '\n Status Code: \n' + err.statusCode + '\n Error Msg: \n' + err.message + ' \n Query: \n' + query);
+                    }
                     callback(null, {});
                 });
             });
