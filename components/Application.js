@@ -6,6 +6,7 @@ import Nav from './Nav';
 import HelpModal from './HelpModal';
 import Home from './Home';
 import About from './About';
+import AboutChills from './AboutChills';
 import ApplicationStore from '../stores/ApplicationStore';
 import {connectToStores, provideContext} from 'fluxible-addons-react';
 import {handleHistory} from 'fluxible-router';

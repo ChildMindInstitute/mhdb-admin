@@ -69,6 +69,7 @@ export default {
                 objectIViewer: ['PrefixBasedView'],
                 objectIEditor: ['PrefixBasedInput'],
                 displayQueries: 1,
+                hasLimitedAccess: 1,
             },
             'chills': {
                 //resourceFocusType: [],
@@ -143,7 +144,7 @@ export default {
             },
             'http://www.w3.org/2000/01/rdf-schema#label': {
                 allowPropertyDelete: 0,
-                allowNewValue: 0
+                allowNewValue: 0,
             },
             'https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#password': {
                 label: ['Password'],
