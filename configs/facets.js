@@ -89,26 +89,31 @@ export default {
             }
         },
         'chills': {
-            list: ['http://examples.ontotext.com/family#ResearchStudy',
-                'http://examples.ontotext.com/family#ResearchStudy_Year',
-                'http://examples.ontotext.com/family#StimulusCathegory',
-                'http://examples.ontotext.com/family#SubjectiveData',
-                'http://examples.ontotext.com/family#Unit'],
+            list: ['http://www.purl.org/mentalhealth/chills#hasArticleType',
+                'http://www.purl.org/mentalhealth/chills#hasPrimaryResearcher',
+                'http://www.purl.org/mentalhealth/chills#hasStimulusCategory',
+                'http://www.purl.org/mentalhealth/chills#hasSensor',
+                'http://www.purl.org/mentalhealth/chills#hasUnit'],
             config: {
-                'http://examples.ontotext.com/family#ResearchStudy': {
-                    hasLinkedValue: 1
+                'http://www.purl.org/mentalhealth/chills#hasArticleType': {
+                    hasLinkedValue: 1,
+                    label: ['Article type'],
                 },
-                'http://examples.ontotext.com/family#ResearchStudy_Year': {
-                    hasLinkedValue: 1
+                'http://www.purl.org/mentalhealth/chills#hasPrimaryResearcher': {
+                    hasLinkedValue: 1,
+                    label: ['Primary researcher'],
                 },
-                'http://examples.ontotext.com/family#StimulusCathegory': {
-                    hasLinkedValue: 1
+                'http://www.purl.org/mentalhealth/chills#hasStimulusCategory': {
+                    hasLinkedValue: 1,
+                    label: ['Stimulus Category'],
                 },
-                'http://examples.ontotext.com/family#SubjectiveData': {
-                    hasLinkedValue: 1
+                'http://www.purl.org/mentalhealth/chills#hasSensor': {
+                    hasLinkedValue: 1,
+                    label: ['Sensor'],
                 },
-                'http://examples.ontotext.com/family#Unit': {
-                    hasLinkedValue: 1
+                'http://www.purl.org/mentalhealth/chills#hasUnit': {
+                    hasLinkedValue: 1,
+                    label: ['Unit'],
                 },
             }
         },

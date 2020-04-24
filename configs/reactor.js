@@ -78,7 +78,7 @@ export default {
                 datasetLabel: ['chills papers'],
                 allowPropertyNew: 1,
                 readOnly: 1,
-                resourceFocusType: ['http://examples.ontotext.com/family#Papers'],
+                resourceFocusType: ['http://www.purl.org/mentalhealth/chills#Paper'],
                 objectIViewer: ['PrefixBasedView'],
                 objectIEditor: ['PrefixBasedInput'],
             },
