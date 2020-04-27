@@ -638,8 +638,12 @@ export default {
                     objectIViewer: ['BasicIndividualInput'],
                 },
                 'https://github.com/charlie42/ld-r-mhdb/blob/master/vocabulary/ld-r-mhdb.ttl#isPending': {
-                    //isHidden: 1,
-                    //allowPropertyDelete: 0,
+                    allowPropertyDelete: 0,
+
+                    //
+                    // Custom config
+                    //
+                    allowPropertyDeleteForSuper: 1,
                 },
             }
         },

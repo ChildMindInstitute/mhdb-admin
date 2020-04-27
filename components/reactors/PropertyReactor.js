@@ -173,6 +173,8 @@ class PropertyReactor extends React.Component {
         return o;
     }
     render() {
+        let user = this.context.getUser();
+        let enableAuthentication = this.props.enableAuthentication;
         let propertyReactorType,
             propertyReactor;
         if (this.props.config) {
@@ -186,14 +188,20 @@ class PropertyReactor extends React.Component {
         if (propertyReactorType) {
             switch (propertyReactorType) {
                 case 'IndividualProperty':
-                    propertyReactor = <IndividualProperty hidePropertyName={this.props.hidePropertyName} spec={this.props.spec} enableAuthentication={this.props.enableAuthentication} readOnly={this.props.readOnly} datasetURI={this.props.datasetURI} resource={this.props.resource} property={this.props.property} propertyPath={this.props.propertyPath} config={propConfig} onCreateIndividualObject={this.handleCreateIndividualObject.bind(this)} onDeleteIndividualObject={this.handleDeleteIndividualObject.bind(this)} onUpdateIndividualObject={this.handleUpdateIndividualObject.bind(this)} onDetailCreateIndividualObject={this.handleDetailCreateIndividualObject.bind(this)} onDetailUpdateIndividualObject={this.handleDetailUpdateIndividualObject.bind(this)} onUpdateAggObject={this.handleUpdateAggObject.bind(this)} onDeleteAggObject={this.handleDeleteAggObject.bind(this)}/>;
+                    propertyReactor = <IndividualProperty hidePropertyName={this.props.hidePropertyName} spec={this.props.spec} enableAuthentication={enableAuthentication} readOnly={this.props.readOnly} datasetURI={this.props.datasetURI} resource={this.props.resource} property={this.props.property} propertyPath={this.props.propertyPath} config={propConfig} onCreateIndividualObject={this.handleCreateIndividualObject.bind(this)} onDeleteIndividualObject={this.handleDeleteIndividualObject.bind(this)} onUpdateIndividualObject={this.handleUpdateIndividualObject.bind(this)} onDetailCreateIndividualObject={this.handleDetailCreateIndividualObject.bind(this)} onDetailUpdateIndividualObject={this.handleDetailUpdateIndividualObject.bind(this)} onUpdateAggObject={this.handleUpdateAggObject.bind(this)} onDeleteAggObject={this.handleDeleteAggObject.bind(this)}/>;
                     break;
                 default:
-                    propertyReactor = <IndividualProperty hidePropertyName={this.props.hidePropertyName} spec={this.props.spec} enableAuthentication={this.props.enableAuthentication} readOnly={this.props.readOnly} datasetURI={this.props.datasetURI} resource={this.props.resource} property={this.props.property} propertyPath={this.props.propertyPath} config={propConfig} onCreateIndividualObject={this.handleCreateIndividualObject.bind(this)} onDeleteIndividualObject={this.handleDeleteIndividualObject.bind(this)} onUpdateIndividualObject={this.handleUpdateIndividualObject.bind(this)} onDetailCreateIndividualObject={this.handleDetailCreateIndividualObject.bind(this)} onDetailUpdateIndividualObject={this.handleDetailUpdateIndividualObject.bind(this)} onUpdateAggObject={this.handleUpdateAggObject.bind(this)} onDeleteAggObject={this.handleDeleteAggObject.bind(this)}/>;
+                    propertyReactor = <IndividualProperty hidePropertyName={this.props.hidePropertyName} spec={this.props.spec} enableAuthentication={enableAuthentication} readOnly={this.props.readOnly} datasetURI={this.props.datasetURI} resource={this.props.resource} property={this.props.property} propertyPath={this.props.propertyPath} config={propConfig} onCreateIndividualObject={this.handleCreateIndividualObject.bind(this)} onDeleteIndividualObject={this.handleDeleteIndividualObject.bind(this)} onUpdateIndividualObject={this.handleUpdateIndividualObject.bind(this)} onDetailCreateIndividualObject={this.handleDetailCreateIndividualObject.bind(this)} onDetailUpdateIndividualObject={this.handleDetailUpdateIndividualObject.bind(this)} onUpdateAggObject={this.handleUpdateAggObject.bind(this)} onDeleteAggObject={this.handleDeleteAggObject.bind(this)}/>;
             }
         }
         let propDeleteDIV = '';
-        if(propConfig.allowPropertyDelete && !this.props.config.readOnly){
+        //  if admin or if allowPropertyDelete = 1
+        if ((
+                !enableAuthentication || 
+                (propConfig.allowPropertyDeleteForSuper && parseInt(user.isSuperUser))
+            ) || 
+            (propConfig.allowPropertyDelete && !this.props.config.readOnly)
+        ){
             propDeleteDIV = <div className="ui list">
                 <div className="item">
                     <div  className="medium ui basic icon labeled button" onClick={this.handleDeleteProperty.bind(this)}>
