@@ -41,7 +41,7 @@ export default {
                 allowPropertyNew: 1,
                 readOnly: 0,
                 allowResourceNew: 1,
-                allowResourceClone: 1,
+                allowResourceClone: 0,
                 allowResourceDelete: 1,
                 templateResource: ['http://www.purl.org/mentalhealth/mhdb-resources#Spire'], 
                 resourceFocusType: ['http://www.purl.org/mentalhealth/mhdb-resources#Project'],
