@@ -33,7 +33,7 @@ class AboutChills extends React.Component {
                                                 <h4 className="ui header"> Contacts: </h4>
                                                 <div className="ui list">
                                                     <div className="item">
-                                              tel (+33)-33-333 3333
+                                                        tel (+33)-33-333 3333
                                                     </div>
                                                     <div className="item">
                                                         <a className="ui label animated zoomIn" href="mailto:chills@prof.chills"><i className="mail icon"></i> Prof. &nbsp; Chills &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</a>

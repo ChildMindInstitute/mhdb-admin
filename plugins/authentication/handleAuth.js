@@ -178,7 +178,7 @@ let addUserQueries = (req, res, recaptchaSiteKey) => {
                                              ldr:isActive "${isActive}"^^xsd:Integer;
                                              ldr:isSuperUser "0"^^xsd:Integer;
                                              ldr:viewerOf <${blanknode}0> ;
-                                             ldr:editorOf <${blanknode}1>, <${blanknode}2>, <${blanknode}3>, <${blanknode}4> .
+                                             ldr:editorOf <${blanknode}1>, <${blanknode}2>, <${blanknode}3>, <${blanknode}4>, <${blanknode}5> .
                                              <${blanknode}1> ldr:scope "RP" ; ldr:resource <${resourceURI}> ;
                                                              ldr:property foaf:firstName .
                                              <${blanknode}2> ldr:scope "RP" ; ldr:resource <${resourceURI}> ;
@@ -187,6 +187,7 @@ let addUserQueries = (req, res, recaptchaSiteKey) => {
                                                              ldr:property foaf:organization .
                                              <${blanknode}4> ldr:scope "RP" ; ldr:resource <${resourceURI}> ;
                                                              ldr:property ldr:password .
+                                             <${blanknode}5> ldr:scope "D" ; ldr:dataset <${generalConfig.defaultEditableDatasetURL}> .
                         ${gEnd}
                     }
                 `;

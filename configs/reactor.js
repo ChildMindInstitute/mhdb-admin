@@ -636,7 +636,11 @@ export default {
                 },
                 'http://www.purl.org/mentalhealth/mhdb-resources#hasWebsite': {
                     objectIViewer: ['BasicIndividualInput'],
-                }
+                },
+                'https://github.com/charlie42/ld-r-mhdb/blob/master/vocabulary/ld-r-mhdb.ttl#isPending': {
+                    //isHidden: 1,
+                    //allowPropertyDelete: 0,
+                },
             }
         },
         resource_property: {

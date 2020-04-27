@@ -1,4 +1,9 @@
 export default {
+
+    //
+    // LD-R config
+    //
+
     //full page title
     appFullTitle: ['Linked Data Reactor'],
     //short page title
@@ -12,7 +17,7 @@ export default {
     //graph that stores users data, must be loaded beforehand
     authDatasetURI: ['http://ld-r.org/users'],
     //will allow super users to confirm and activate regiastered users
-    enableUserConfirmation: 1,
+    enableUserConfirmation: 0,
     //if enabled will allow a recaptcha box in the registration form
     //note: if it is enabled, you need to set the key parameteres for recaptcha in the  server.js file
     useGoogleRecaptcha: 0,
@@ -24,7 +29,7 @@ export default {
     enableEmailNotifications: 0,
 
     //will put all update actions in log folder
-    enableLogs: 1,
+    enableLogs: 0,
 
     //if provided will track the users on your LD-R instance
     googleAnalyticsID: '',
@@ -49,5 +54,10 @@ export default {
     //will enable csv imports
     enableCSVImport: 1,
     //graph that stores your mapping configurations for imprting other formats such as CSV
-    mappingsDatasetURI: ['http://ld-r.org/mappings']
+    mappingsDatasetURI: ['http://ld-r.org/mappings'],
+
+    //
+    // Custom config
+    //
+    defaultEditableDatasetURL: "http://51.68.79.244:7200",
 };
