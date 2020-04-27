@@ -677,7 +677,6 @@ export default {
             getDynamicEndpointParameters(user, datasetURI, (endpointParameters)=>{
                 graphName = endpointParameters.graphName;
                 query = queryObject.getPrefixes() + queryObject.deleteResource(endpointParameters, user, graphName, params.resourceURI);
-                console.log(query);
                 HTTPQueryObject = getHTTPQuery('update', query, endpointParameters, outputFormat);
                 rp.post({uri: HTTPQueryObject.uri, form: HTTPQueryObject.params}).then(function(res){
                     if(enableLogs){

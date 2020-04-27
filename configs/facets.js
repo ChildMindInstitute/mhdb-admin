@@ -81,9 +81,14 @@ export default {
             }
         },
         'admin': {
-            list: ['https://github.com/charlie42/ld-r-mhdb/blob/master/vocabulary/ld-r-mhdb.ttl#isPending', 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type'],
+            list: ['https://github.com/charlie42/ld-r-mhdb/blob/master/vocabulary/ld-r-mhdb.ttl#isPendingCreate', 
+                    'https://github.com/charlie42/ld-r-mhdb/blob/master/vocabulary/ld-r-mhdb.ttl#isPendingDelete',  
+                    'http://www.w3.org/1999/02/22-rdf-syntax-ns#type'],
             config: {
-                'https://github.com/charlie42/ld-r-mhdb/blob/master/vocabulary/ld-r-mhdb.ttl#isPending': {
+                'https://github.com/charlie42/ld-r-mhdb/blob/master/vocabulary/ld-r-mhdb.ttl#isPendingCreate': {
+                    
+                },
+                'https://github.com/charlie42/ld-r-mhdb/blob/master/vocabulary/ld-r-mhdb.ttl#isPendingDelete': {
                     
                 },
             }

@@ -56,20 +56,25 @@ class ResourceQuery{
     }
     deleteResource(endpointParameters, user, graphName, resourceURI) {
         //todo: consider different value types
-        //todo: delete if superuser, otherwise mark for deletion
         let {gStart, gEnd} = this.prepareGraphName(graphName);
-        this.query = `
-        DELETE {
-            ${gStart}
-                <${resourceURI}> ?p ?o .
-            ${gEnd}
-        } WHERE {
-            ${gStart}
-                <${resourceURI}> ?p ?o .
-            ${gEnd}
+        if(user && user.accountName !== 'open' && !parseInt(user.isSuperUser)){
+            // if deleted not by superuser - add property isPendingDelete
+            let isPendingDeleteURI = "https://github.com/charlie42/ld-r-mhdb/blob/master/vocabulary/ld-r-mhdb.ttl#isPendingDelete"
+            return this.addTriple(endpointParameters, graphName, resourceURI, isPendingDeleteURI, "true")
+        } else {
+            this.query = `
+            DELETE {
+                ${gStart}
+                    <${resourceURI}> ?p ?o .
+                ${gEnd}
+            } WHERE {
+                ${gStart}
+                    <${resourceURI}> ?p ?o .
+                ${gEnd}
+            }
+            `;
+            return this.query;
         }
-        `;
-        return this.query;
     }
     cloneResource(endpointParameters, user, graphName, resourceURI, newResourceURI) {
         //todo: consider different value types
@@ -101,11 +106,11 @@ class ResourceQuery{
         //todo: consider different value types
         let {gStart, gEnd} = this.prepareGraphName(graphName);
         let userSt = '';
-        let isPending = '';
+        let isPendingCreate = '';
         if(user && user.accountName !== 'open' && !parseInt(user.isSuperUser)){
             userSt=` ldr:createdBy <${user.id}> ;`;
-            // if added not by superuser - add property isPending
-            isPending=` ldr-mhdb:isPending "true"^^xsd:boolean ;`;
+            // if added not by superuser - add property isPendingCreate
+            isPendingCreate=` ldr-mhdb:isPendingCreate "true" ;`;
         }
         let date = new Date();
         let currentDate = date.toISOString(); //"2011-12-19T15:28:46.493Z"
@@ -116,7 +121,7 @@ class ResourceQuery{
                 ${gStart}
                     <${newResourceURI}> ?p ?o ;
                     ${userSt}
-                    ${isPending} 
+                    ${isPendingCreate} 
                     ldr:createdOn "${currentDate}"^^xsd:dateTime .
                 ${gEnd}
             } WHERE {

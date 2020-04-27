@@ -12,8 +12,11 @@
 #    Object Properties
 #################################################################
 
-###  https://github.com/charlie42/ld-r-mhdb/blob/master/vocabulary/ld-r-mhdb.ttl#isPending
-:isPending rdf:type owl:ObjectProperty .
+###  https://github.com/charlie42/ld-r-mhdb/blob/master/vocabulary/ld-r-mhdb.ttl#isPendingCreate
+:isPendingCreate rdf:type owl:ObjectProperty .
+
+###  https://github.com/charlie42/ld-r-mhdb/blob/master/vocabulary/ld-r-mhdb.ttl#isPendingDelete
+:isPendingDelete rdf:type owl:ObjectProperty .
 
 #################################################################
 #    Data properties
