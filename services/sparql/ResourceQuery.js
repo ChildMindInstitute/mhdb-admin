@@ -108,15 +108,22 @@ class ResourceQuery{
         `;
         return this.query;
     }
-    newResource(endpointParameters, user, graphName, newResourceURI, templateResourceURI) {
+    newResource(endpointParameters, user, graphName, newResourceURI, templateResourceURI, resourceLabel) {
         //todo: consider different value types
         let {gStart, gEnd} = this.prepareGraphName(graphName);
         let userSt = '';
         let isPendingCreate = '';
+        let labelSt = '';
+        let labelFilterSt = '';
         if(user && user.accountName !== 'open' && !parseInt(user.isSuperUser)){
-            userSt=` ldr:createdBy <${user.id}> ;`;
+            userSt = ` ldr:createdBy <${user.id}> ;`;
             // if added not by superuser - add property isPendingCreate
-            isPendingCreate=` ldr-mhdb:isPendingCreate "true" ;`;
+            isPendingCreate = ` ldr-mhdb:isPendingCreate "true" ;`;
+        }
+        if(resourceLabel) {
+            labelSt = ` rdfs:label "${resourceLabel}" ;`
+            // don't user label from template resource
+            labelFilterSt = "&& ?p != rdfs:label"
         }
         let date = new Date();
         let currentDate = date.toISOString(); //"2011-12-19T15:28:46.493Z"
@@ -128,12 +135,13 @@ class ResourceQuery{
                     <${newResourceURI}> ?p ?o ;
                     ${userSt}
                     ${isPendingCreate} 
+                    ${labelSt}
                     ldr:createdOn "${currentDate}"^^xsd:dateTime .
                 ${gEnd}
             } WHERE {
                 ${gStart}
                     <${templateResourceURI}> ?p ?o .
-                    FILTER (?p != ldr:cloneOf && ?p != ldr:createdOn && ?p != ldr:createdBy && ?o != ldr:TemplateResource)
+                    FILTER (?p != ldr:cloneOf && ?p != ldr:createdOn && ?p != ldr:createdBy && ?o != ldr:TemplateResource ${labelFilterSt})
                 ${gEnd}
             }
             `;

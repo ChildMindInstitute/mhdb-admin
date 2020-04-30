@@ -7,7 +7,7 @@ import getResourcesCount from '../../actions/getResourcesCount';
 import Dataset from '../dataset/Dataset';
 import cloneResource from '../../actions/cloneResource';
 import createResource from '../../actions/createResource';
-
+import toaster from "toasted-notes";
 
 class DatasetReactor extends React.Component {
     componentDidMount() {
@@ -19,11 +19,16 @@ class DatasetReactor extends React.Component {
             resourceURI: resourceURI
         });
     }
-    handleCreateResource(datasetURI, templateResource) {
+    handleCreateResource(datasetURI, templateResource, user) {
         this.context.executeAction(createResource, {
             dataset: datasetURI,
             templateResource: templateResource
         });
+        if(user && user.accountName !== 'open' && !parseInt(user.isSuperUser)) {
+            toaster.notify("New resource based on the template resource will be created. Admin will review the changes soon.", {
+                duration: 5000
+            });
+        }
     }
     //removes properties from an object
     configMinus(config, props) {
@@ -45,13 +50,14 @@ class DatasetReactor extends React.Component {
         let resourceQuery = this.props.DatasetStore.dataset.resourceQuery;
         let error = this.props.DatasetStore.dataset.error;
         let datasetReactor;
+        let user = this.context.getUser();
         if(config && config.datasetReactor){
             switch(config.datasetReactor[0]){
                 case 'Dataset':
-                    datasetReactor = <Dataset enableAuthentication={enableAuthentication} datasetURI={datasetURI} resources={resources} page={page} total={total} error={error} config={this.configMinus(config, ['datasetReactor'])} resourceQuery={resourceQuery} onCloneResource={this.handleCloneResource.bind(this)} onCreateResource={this.handleCreateResource.bind(this)}/>;
+                    datasetReactor = <Dataset enableAuthentication={enableAuthentication} datasetURI={datasetURI} resources={resources} page={page} total={total} error={error} config={this.configMinus(config, ['datasetReactor'])} resourceQuery={resourceQuery} onCloneResource={this.handleCloneResource.bind(this)} onCreateResource={this.handleCreateResource.bind(this, user)}/>;
                     break;
                 default:
-                    datasetReactor = <Dataset enableAuthentication={enableAuthentication} datasetURI={datasetURI} resources={resources} page={page} total={total} error={error} config={this.configMinus(config, ['datasetReactor'])} resourceQuery={resourceQuery} onCloneResource={this.handleCloneResource.bind(this)} onCreateResource={this.handleCreateResource.bind(this)}/>;
+                    datasetReactor = <Dataset enableAuthentication={enableAuthentication} datasetURI={datasetURI} resources={resources} page={page} total={total} error={error} config={this.configMinus(config, ['datasetReactor'])} resourceQuery={resourceQuery} onCloneResource={this.handleCloneResource.bind(this)} onCreateResource={this.handleCreateResource.bind(this, user)}/>;
             }
         }
 

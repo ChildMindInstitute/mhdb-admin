@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import DatasetHeader from './DatasetHeader';
 import DatasetViewer from './DatasetViewer';
 import DatasetPager from './DatasetPager';
@@ -122,6 +123,7 @@ class DatasetFB extends React.Component {
         let createResourceDIV = '';
         let dcnf = this.state.config;
         let templateResource = '';
+        let user = this.context.getUser();
         if(dcnf && !this.props.readOnly && dcnf.allowResourceNew){
             if(dcnf.templateResource){
                 templateResource = dcnf.templateResource[0];
@@ -129,7 +131,7 @@ class DatasetFB extends React.Component {
             createResourceDIV =
             <div className="ui list">
                 <div className="item">
-                    <div  className="medium ui basic icon labeled button" onClick={this.props.onCreateResource.bind(this, this.props.datasetURI, templateResource, true)}>
+                    <div  className="medium ui basic icon labeled button" onClick={this.props.onCreateResource.bind(this, this.props.datasetURI, templateResource, false, user)}>
                         <i className="cube large blue icon "></i> <i className="add black icon"></i> Add a New Resource
                     </div>
                 </div>
@@ -161,4 +163,7 @@ class DatasetFB extends React.Component {
         );
     }
 }
+DatasetFB.contextTypes = {
+    getUser: PropTypes.func
+};
 export default DatasetFB;

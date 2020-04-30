@@ -10,18 +10,30 @@ import loadFacets from '../../actions/loadFacets';
 import getEnvState from '../../actions/getEnvState';
 import DatasetFB from './DatasetFB';
 import WaitAMoment from '../WaitAMoment';
+import toaster from "toasted-notes";
 
 class FacetedBrowser extends React.Component {
     constructor(props) {
         super(props);
         this.state = {selection: {}, expandedFacet: 0, showAllResources: 0, expandedResources: 0, hideFirstCol: false, invert: {}, range:{}, datasetConfig: {}, analysisProps: {}, pivotConstraint: '', envState: this.props.FacetedBrowserStore.envState, importedEnvState: this.props.FacetedBrowserStore.importedEnvState};
     }
-    handleCreateResource(datasetURI, templateResource, openInNewWindows) {
+    showNotification(user, message) {
+        if(user && user.accountName !== 'open' && !parseInt(user.isSuperUser)) {
+            toaster.notify(message, {
+                duration: 5000
+            });
+        }
+    }
+    handleCreateResource(datasetURI, templateResource, openInNewWindows, user) {
+        let resourceLabel = prompt("New resource label:")
         this.context.executeAction(createResource, {
             dataset: datasetURI,
             templateResource: templateResource,
-            openInNewWindows: openInNewWindows
+            openInNewWindows: openInNewWindows,
+            resourceLabel: resourceLabel,
         });
+        let message = "New resource based on the template resource is created. You can make your changes. Admin will review them soon."
+        this.showNotification(user, message)
     }
     componentDidMount() {
         //check if it is loaded from an address
