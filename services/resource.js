@@ -194,10 +194,10 @@ export default {
                     query = queryObject.getPrefixes();
                     let delTmp = params.objectValue.split(params.delimitedBy);
                     delTmp.forEach((dval)=>{
-                        query = query + queryObject.addTriple(endpointParameters, graphName, params.resourceURI, params.propertyURI, dval.trim(), params.valueType, params.dataType);
+                        query = query + queryObject.addTriple(endpointParameters, user, graphName, params.resourceURI, params.propertyURI, dval.trim(), params.valueType, params.dataType);
                     });
                 }else{
-                    query = queryObject.getPrefixes() + queryObject.addTriple(endpointParameters, graphName, params.resourceURI, params.propertyURI, params.objectValue, params.valueType, params.dataType);
+                    query = queryObject.getPrefixes() + queryObject.addTriple(endpointParameters, user, graphName, params.resourceURI, params.propertyURI, params.objectValue, params.valueType, params.dataType);
                 }
                 //build http uri
                 //send request
@@ -319,7 +319,7 @@ export default {
             }
             getDynamicEndpointParameters(user, datasetURI, (endpointParameters)=>{
                 graphName = endpointParameters.graphName;
-                query = queryObject.getPrefixes() + queryObject.addTriple(endpointParameters, graphName, params.resourceURI, params.propertyURI, params.objectValue, 'literal', '');
+                query = queryObject.getPrefixes() + queryObject.addTriple(endpointParameters, user, graphName, params.resourceURI, params.propertyURI, params.objectValue, 'literal', '');
                 //build http uri
                 //send request
                 HTTPQueryObject = getHTTPQuery('update', query, endpointParameters, outputFormat);
@@ -467,7 +467,7 @@ export default {
             }
             getDynamicEndpointParameters(user, datasetURI, (endpointParameters)=>{
                 graphName = endpointParameters.graphName;
-                query = queryObject.getPrefixes() + queryObject.updateTriple(endpointParameters, graphName, params.resourceURI, params.propertyURI, params.oldObjectValue, params.newObjectValue, params.valueType, params.dataType);
+                query = queryObject.getPrefixes() + queryObject.updateTriple(endpointParameters, user, graphName, params.resourceURI, params.propertyURI, params.oldObjectValue, params.newObjectValue, params.valueType, params.dataType);
                 //build http uri
                 //send request
                 HTTPQueryObject = getHTTPQuery('update', query, endpointParameters, outputFormat);
@@ -558,7 +558,7 @@ export default {
             }
             getDynamicEndpointParameters(user, datasetURI, (endpointParameters)=>{
                 graphName = endpointParameters.graphName;
-                query = queryObject.getPrefixes() + queryObject.updateTriples(endpointParameters, graphName, params.resourceURI, params.propertyURI, params.changes);
+                query = queryObject.getPrefixes() + queryObject.updateTriples(endpointParameters, user, graphName, params.resourceURI, params.propertyURI, params.changes);
                 //build http uri
                 //send request
                 HTTPQueryObject = getHTTPQuery('update', query, endpointParameters, outputFormat);
@@ -603,7 +603,7 @@ export default {
             }
             getDynamicEndpointParameters(user, datasetURI, (endpointParameters)=>{
                 graphName = endpointParameters.graphName;
-                query = queryObject.getPrefixes() + queryObject.deleteTriple(endpointParameters, graphName, params.resourceURI, params.propertyURI, params.objectValue, params.valueType, params.dataType);
+                query = queryObject.getPrefixes() + queryObject.deleteTriple(endpointParameters, user, graphName, params.resourceURI, params.propertyURI, params.objectValue, params.valueType, params.dataType);
                 //build http uri
                 //send request
                 HTTPQueryObject = getHTTPQuery('update', query, endpointParameters, outputFormat);
@@ -643,7 +643,7 @@ export default {
             }
             getDynamicEndpointParameters(user, datasetURI, (endpointParameters)=>{
                 graphName = endpointParameters.graphName;
-                query = queryObject.getPrefixes() + queryObject.deleteTriples(endpointParameters, graphName, params.resourceURI, params.propertyURI, params.changes);
+                query = queryObject.getPrefixes() + queryObject.deleteTriples(endpointParameters, user, graphName, params.resourceURI, params.propertyURI, params.changes);
                 //build http uri
                 //send request
                 HTTPQueryObject = getHTTPQuery('update', query, endpointParameters, outputFormat);
@@ -715,7 +715,7 @@ export default {
             getDynamicEndpointParameters(user, datasetURI, (endpointParameters)=>{
                 graphName = endpointParameters.graphName;
                 //delete all values
-                query = queryObject.getPrefixes() + queryObject.deleteTriple(endpointParameters, graphName, params.resourceURI, params.propertyURI, 0, 0, 0);
+                query = queryObject.getPrefixes() + queryObject.deleteTriple(endpointParameters, user, graphName, params.resourceURI, params.propertyURI, 0, 0, 0);
                 //build http uri
                 //send request
                 HTTPQueryObject = getHTTPQuery('update', query, endpointParameters, outputFormat);

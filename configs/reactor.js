@@ -648,6 +648,17 @@ export default {
                 'https://github.com/charlie42/ld-r-mhdb/blob/master/vocabulary/ld-r-mhdb.ttl#isPendingDelete': {
                     allowPropertyDelete: 1,
                 },
+                'https://github.com/charlie42/ld-r-mhdb/blob/master/vocabulary/ld-r-mhdb.ttl#hasPropertyPendingCreate': {
+                    allowPropertyDelete: 0,
+
+                    //
+                    // Custom config
+                    //
+                    allowPropertyDeleteForSuper: 1,
+                },
+                'https://github.com/charlie42/ld-r-mhdb/blob/master/vocabulary/ld-r-mhdb.ttl#hasPropertyPendingDelete': {
+                    allowPropertyDelete: 1,
+                },
             }
         },
         resource_property: {

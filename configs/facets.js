@@ -82,7 +82,9 @@ export default {
         },
         'admin': {
             list: ['https://github.com/charlie42/ld-r-mhdb/blob/master/vocabulary/ld-r-mhdb.ttl#isPendingCreate', 
-                    'https://github.com/charlie42/ld-r-mhdb/blob/master/vocabulary/ld-r-mhdb.ttl#isPendingDelete',  
+                    'https://github.com/charlie42/ld-r-mhdb/blob/master/vocabulary/ld-r-mhdb.ttl#isPendingDelete',
+                    'https://github.com/charlie42/ld-r-mhdb/blob/master/vocabulary/ld-r-mhdb.ttl#hasPropertyPendingDelete',
+                    'https://github.com/charlie42/ld-r-mhdb/blob/master/vocabulary/ld-r-mhdb.ttl#hasPropertyPendingCreate',
                     'http://www.w3.org/1999/02/22-rdf-syntax-ns#type'],
             config: {
                 'https://github.com/charlie42/ld-r-mhdb/blob/master/vocabulary/ld-r-mhdb.ttl#isPendingCreate': {

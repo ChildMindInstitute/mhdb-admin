@@ -2,6 +2,12 @@
 import {getQueryDataTypeValue} from '../utils/helpers';
 class ResourceQuery{
     constructor() {
+        this.hasPropertyPendingDeleteURI = "https://github.com/charlie42/ld-r-mhdb/blob/master/vocabulary/ld-r-mhdb.ttl#hasPropertyPendingDelete";
+        this.hasPropertyPendingCreateURI = "https://github.com/charlie42/ld-r-mhdb/blob/master/vocabulary/ld-r-mhdb.ttl#hasPropertyPendingCreate";
+        this.isPendingDeleteURI = "https://github.com/charlie42/ld-r-mhdb/blob/master/vocabulary/ld-r-mhdb.ttl#isPendingDelete";
+        this.isPendingCreateURI = "https://github.com/charlie42/ld-r-mhdb/blob/master/vocabulary/ld-r-mhdb.ttl#isPendingCreate";
+        this.ignoredForPendingProperties = [this.hasPropertyPendingDeleteURI, this.hasPropertyPendingCreateURI, this.isPendingDeleteURI, this.isPendingDeleteURI];
+    
         this.prefixes=`
         PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
         PREFIX ldr: <https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#>
@@ -60,7 +66,7 @@ class ResourceQuery{
         if(user && user.accountName !== 'open' && !parseInt(user.isSuperUser)){
             // if deleted not by superuser - add property isPendingDelete
             let isPendingDeleteURI = "https://github.com/charlie42/ld-r-mhdb/blob/master/vocabulary/ld-r-mhdb.ttl#isPendingDelete"
-            return this.addTriple(endpointParameters, graphName, resourceURI, isPendingDeleteURI, "true")
+            return this.addTriple(endpointParameters, user, graphName, resourceURI, isPendingDeleteURI, "true")
         } else {
             this.query = `
             DELETE {
@@ -144,8 +150,6 @@ class ResourceQuery{
             }
             `;
         }
-
-
         return this.query;
     }
     annotateResource(endpointParameters, user, datasetURI, graphName, resourceURI, propertyURI, annotations, inNewDataset, options) {
@@ -229,24 +233,37 @@ class ResourceQuery{
         `;
         return this.query;
     }
-    addTriple(endpointParameters, graphName, resourceURI, propertyURI, objectValue, valueType, dataType) {
+    addTriple(endpointParameters, user, graphName, resourceURI, propertyURI, objectValue, valueType, dataType) {
         //todo: consider different value types
         let newValue, tmp = {};
         let {gStart, gEnd} = this.prepareGraphName(graphName);
+        let hasPropertyPendingCreate = '';
+        if((user && user.accountName !== 'open' && !parseInt(user.isSuperUser)) &&
+            !this.ignoredForPendingProperties.includes(propertyURI)){
+            // if added not by superuser - add property isPendingCreate
+            hasPropertyPendingCreate=`;
+                ldr-mhdb:hasPropertyPendingCreate "${propertyURI} = ${objectValue}" `;
+        }
         tmp = getQueryDataTypeValue(valueType, dataType, objectValue);
         newValue = tmp.value;
         this.query = `
             INSERT DATA {
             ${gStart}
-                <${resourceURI}> <${propertyURI}> ${newValue} .
+                <${resourceURI}> <${propertyURI}> ${newValue} ${hasPropertyPendingCreate}.
             ${gEnd}
             }
         `;
         return this.query;
     }
-    deleteTriple(endpointParameters, graphName, resourceURI, propertyURI, objectValue, valueType, dataType) {
+    deleteTriple(endpointParameters, user, graphName, resourceURI, propertyURI, objectValue, valueType, dataType) {
         let dtype, newValue, tmp = {};
         let {gStart, gEnd} = this.prepareGraphName(graphName);
+        if((user && user.accountName !== 'open' && !parseInt(user.isSuperUser)) &&
+            !this.ignoredForPendingProperties.includes(propertyURI)){
+            // if deleted not by superuser - add property hasPropertyPendingDelete
+            let propertyURIandValue = `${propertyURI} = ${objectValue}`
+            return this.addTriple(endpointParameters, user, graphName, resourceURI, this.hasPropertyPendingDeleteURI, propertyURIandValue)
+        }
         if(objectValue){
             tmp = getQueryDataTypeValue(valueType, dataType, objectValue);
             newValue = tmp.value;
@@ -283,12 +300,12 @@ class ResourceQuery{
         let self = this;
         self.query= '';
         changes.forEach(function(change) {
-            self.query = self.query + self.deleteTriple(endpointParameters, graphName, resourceURI, propertyURI, change.oldValue, change.valueType, change.dataType);
+            self.query = self.query + self.deleteTriple(endpointParameters, user, graphName, resourceURI, propertyURI, change.oldValue, change.valueType, change.dataType);
         });
         return self.query;
     }
-    updateTriple (endpointParameters, graphName, resourceURI, propertyURI, oldObjectValue, newObjectValue, valueType, dataType) {
-        this.query = this.deleteTriple(endpointParameters, graphName, resourceURI, propertyURI, oldObjectValue, valueType, dataType) + ' ; ' + this.addTriple(endpointParameters, graphName, resourceURI, propertyURI, newObjectValue, valueType, dataType);
+    updateTriple (endpointParameters, user, graphName, resourceURI, propertyURI, oldObjectValue, newObjectValue, valueType, dataType) {
+        this.query = this.deleteTriple(endpointParameters, user, graphName, resourceURI, propertyURI, oldObjectValue, valueType, dataType) + ' ; ' + this.addTriple(endpointParameters, user, graphName, resourceURI, propertyURI, newObjectValue, valueType, dataType);
         return this.query;
     }
     updateTriples (endpointParameters, graphName, resourceURI, propertyURI, changes) {
@@ -301,10 +318,10 @@ class ResourceQuery{
     }
     updateObjectTriples (endpointParameters, graphName, resourceURI, propertyURI, oldObjectValue, newObjectValue, valueType, dataType, detailData) {
         let self=this;
-        self.query = self.deleteTriple(endpointParameters, graphName, resourceURI, propertyURI, oldObjectValue, valueType, dataType) + ' ; ' + self.addTriple(endpointParameters, graphName, resourceURI, propertyURI, newObjectValue, valueType, dataType) + ' ; ';
+        self.query = self.deleteTriple(endpointParameters, user, graphName, resourceURI, propertyURI, oldObjectValue, valueType, dataType) + ' ; ' + self.addTriple(endpointParameters, user, graphName, resourceURI, propertyURI, newObjectValue, valueType, dataType) + ' ; ';
         for (let propURI in detailData) {
-            self.query = self.query + self.deleteTriple(endpointParameters, graphName, oldObjectValue, propURI, '', detailData[propURI].valueType, detailData[propURI].dataType) + ' ; ';
-            self.query = self.query + self.addTriple(endpointParameters, graphName, newObjectValue, propURI, detailData[propURI].value, detailData[propURI].valueType, detailData[propURI].dataType)+ ' ; ';
+            self.query = self.query + self.deleteTriple(endpointParameters, user, graphName, oldObjectValue, propURI, '', detailData[propURI].valueType, detailData[propURI].dataType) + ' ; ';
+            self.query = self.query + self.addTriple(endpointParameters, user, graphName, newObjectValue, propURI, detailData[propURI].value, detailData[propURI].valueType, detailData[propURI].dataType)+ ' ; ';
         }
         return self.query;
     }
@@ -329,10 +346,10 @@ class ResourceQuery{
             `;
         }
         let self=this;
-        self.query = self.query + self.deleteTriple(endpointParameters, graphName, resourceURI, propertyURI, oldObjectValue, valueType, dataType) + ' ; ' + self.addTriple(endpointParameters, graphName, resourceURI, propertyURI, newObjectValue, valueType, dataType) + ' ; ';
+        self.query = self.query + self.deleteTriple(endpointParameters, user, graphName, resourceURI, propertyURI, oldObjectValue, valueType, dataType) + ' ; ' + self.addTriple(endpointParameters, user, graphName, resourceURI, propertyURI, newObjectValue, valueType, dataType) + ' ; ';
         for (let propURI in detailData) {
-            self.query = self.query + self.deleteTriple(endpointParameters, graphName, oldObjectValue, propURI, '', detailData[propURI].valueType, detailData[propURI].dataType) + ' ; ';
-            self.query = self.query + self.addTriple(endpointParameters, graphName, newObjectValue, propURI, detailData[propURI].value, detailData[propURI].valueType, detailData[propURI].dataType)+ ' ; ';
+            self.query = self.query + self.deleteTriple(endpointParameters, user, graphName, oldObjectValue, propURI, '', detailData[propURI].valueType, detailData[propURI].dataType) + ' ; ';
+            self.query = self.query + self.addTriple(endpointParameters, user, graphName, newObjectValue, propURI, detailData[propURI].value, detailData[propURI].valueType, detailData[propURI].dataType)+ ' ; ';
         }
 
         return this.query;

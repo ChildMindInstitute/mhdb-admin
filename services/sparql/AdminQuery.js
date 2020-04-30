@@ -38,8 +38,8 @@ class AdminQuery{
         `;
         return this.prefixes + this.query;
     }
-    activateUser(endpointParameters, graphName, resourceURI){
-        this.query = this.queryObject.updateTriple(endpointParameters, graphName, resourceURI, 'https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#isActive', '0', '1', 'literal', '');
+    activateUser(endpointParameters, user, graphName, resourceURI){
+        this.query = this.queryObject.updateTriple(endpointParameters, user, graphName, resourceURI, 'https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#isActive', '0', '1', 'literal', '');
         return this.prefixes + this.query;
     }
     addDatasetEditor(endpointParameters, graphName, user, dataset, bnode) {

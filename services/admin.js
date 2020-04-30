@@ -182,7 +182,7 @@ export default {
             getDynamicEndpointParameters(user, datasetURI, (endpointParameters)=> {
                 graphName = endpointParameters.graphName;
 
-                query = queryObject.activateUser(endpointParameters, graphName, params.resourceURI);
+                query = queryObject.activateUser(endpointParameters, user, graphName, params.resourceURI);
                 //build http uri
                 //send request
                 HTTPQueryObject = getHTTPQuery('update', query, endpointParameters, outputFormat);
