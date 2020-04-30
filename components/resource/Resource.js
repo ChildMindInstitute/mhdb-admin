@@ -100,7 +100,7 @@ class Resource extends React.Component {
         if(this.props.config.usePropertyCategories){
             currentCategory = this.props.currentCategory;
             let sortedCategories = this.props.config.propertyCategories;
-            sortedCategories.sort();
+            //sortedCategories.sort();
             if(!currentCategory){
                 currentCategory = sortedCategories[0];
             }

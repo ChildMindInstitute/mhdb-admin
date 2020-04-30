@@ -123,12 +123,12 @@ export default {
         resource: {
             'generic': {
                 //if enabled, will categorize properties in different tabs based on property categories
-                usePropertyCategories: 0,
-                propertyCategories: [],
+                usePropertyCategories: 1,
+                propertyCategories: ['Properties', 'Actions'],
                 //used when creating random resources
                 dynamicResourceDomain: ['http://example.org'],
                 resourceReactor: ['Resource']
-            }
+            },
         },
         property: {
             'generic': {
@@ -622,24 +622,29 @@ export default {
             'http://51.68.79.244:7200': {
                 'http://www.w3.org/2000/01/rdf-schema#label': {
                     allowExtension: 0,
+                    category: ['Properties'],
                 },
                 'http://www.purl.org/mentalhealth/mhdb-resources#hasProjectCategory': {
                     objectIViewer: ['BasicLinkedIndividualView'],
                     objectIEditor: ['PrefixBasedInput'],
                     decodeURIComponent: 1,
+                    category: ['Properties'],
                 },
                 'http://www.purl.org/mentalhealth/mhdb-resources#isMaintainedByGroup': {
                     objectIViewer: ['BasicLinkedIndividualView'],
+                    category: ['Properties'],
                 },
                 'http://www.purl.org/mentalhealth/mhdb-resources#isReferencedBy': {
                     objectIViewer: ['BasicLinkedIndividualView'],
+                    category: ['Properties'],
                 },
                 'http://www.purl.org/mentalhealth/mhdb-resources#hasWebsite': {
                     objectIViewer: ['BasicIndividualInput'],
+                    category: ['Properties'],
                 },
                 'https://github.com/charlie42/ld-r-mhdb/blob/master/vocabulary/ld-r-mhdb.ttl#isPendingCreate': {
                     allowPropertyDelete: 0,
-
+                    category: ['Actions'],
                     //
                     // Custom config
                     //
@@ -647,9 +652,11 @@ export default {
                 },
                 'https://github.com/charlie42/ld-r-mhdb/blob/master/vocabulary/ld-r-mhdb.ttl#isPendingDelete': {
                     allowPropertyDelete: 1,
+                    category: ['Actions'],
                 },
                 'https://github.com/charlie42/ld-r-mhdb/blob/master/vocabulary/ld-r-mhdb.ttl#hasPropertyPendingCreate': {
                     allowPropertyDelete: 0,
+                    category: ['Actions'],
 
                     //
                     // Custom config
@@ -658,6 +665,7 @@ export default {
                 },
                 'https://github.com/charlie42/ld-r-mhdb/blob/master/vocabulary/ld-r-mhdb.ttl#hasPropertyPendingDelete': {
                     allowPropertyDelete: 1,
+                    category: ['Actions'],
                 },
             }
         },
