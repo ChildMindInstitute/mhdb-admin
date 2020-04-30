@@ -5,6 +5,8 @@ import {NavLink} from 'fluxible-router';
 import URIUtil from '../utils/URIUtil';
 import cloneResource from '../../actions/cloneResource';
 import deleteResource from '../../actions/deleteResource';
+import toaster from "toasted-notes";
+//import "toasted-notes/src/styles.css"; 
 
 class Resource extends React.Component {
     constructor(props) {
@@ -25,13 +27,18 @@ class Resource extends React.Component {
         });
         e.stopPropagation();
     }
-    handleDeleteResource(datasetURI, resourceURI, e) {
+    handleDeleteResource(datasetURI, resourceURI, user, e) {
         let result = confirm('Are you sure you want to delete this resource?');
         if (result) {
             this.context.executeAction(deleteResource, {
                 dataset: datasetURI,
                 resourceURI: resourceURI
             });
+            if(user && user.accountName !== 'open' && !parseInt(user.isSuperUser)) {
+                toaster.notify("isPendingDelete property will be added to Actions tab. Admin will delete the resouse soon.", {
+                    duration: 5000
+                });
+            }
         }
         e.stopPropagation();
     }
@@ -184,7 +191,7 @@ class Resource extends React.Component {
                                 <a className="medium ui circular basic icon button" onClick={this.handleCloneResource.bind(this, this.props.datasetURI, decodeURIComponent(this.props.resource))} title="clone this resource"><i className="icon teal superscript"></i></a>
                                 : ''}
                             {deleteable ?
-                                <a className={'medium ui circular basic icon button' + (disableDelete? ' disabled': '')} onClick={this.handleDeleteResource.bind(this, this.props.datasetURI, decodeURIComponent(this.props.resource))} title={disableDelete ? 'can not delete this resource because it is set as a template resource.' : 'delete this resource'}><i className="icon red trash"></i></a>
+                                <a className={'medium ui circular basic icon button' + (disableDelete? ' disabled': '')} onClick={this.handleDeleteResource.bind(this, this.props.datasetURI, decodeURIComponent(this.props.resource), user)} title={disableDelete ? 'can not delete this resource because it is set as a template resource.' : 'delete this resource'}><i className="icon red trash"></i></a>
                                 : ''}
 
                         </h2>
