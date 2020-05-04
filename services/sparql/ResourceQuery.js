@@ -304,7 +304,7 @@ class ResourceQuery{
         }
         return this.query;
     }
-    deleteTriples(endpointParameters, graphName, resourceURI, propertyURI, changes) {
+    deleteTriples(endpointParameters, user, graphName, resourceURI, propertyURI, changes) {
         let self = this;
         self.query= '';
         changes.forEach(function(change) {
@@ -316,15 +316,15 @@ class ResourceQuery{
         this.query = this.deleteTriple(endpointParameters, user, graphName, resourceURI, propertyURI, oldObjectValue, valueType, dataType) + ' ; ' + this.addTriple(endpointParameters, user, graphName, resourceURI, propertyURI, newObjectValue, valueType, dataType);
         return this.query;
     }
-    updateTriples (endpointParameters, graphName, resourceURI, propertyURI, changes) {
+    updateTriples (endpointParameters, user, graphName, resourceURI, propertyURI, changes) {
         let self = this;
         self.query= '';
         changes.forEach(function(change) {
-            self.query = self.query + self.updateTriple(endpointParameters, graphName, resourceURI, propertyURI, change.oldValue, change.newValue, change.valueType, change.dataType) + ' ; ';
+            self.query = self.query + self.updateTriple(endpointParameters, user, graphName, resourceURI, propertyURI, change.oldValue, change.newValue, change.valueType, change.dataType) + ' ; ';
         });
         return self.query;
     }
-    updateObjectTriples (endpointParameters, graphName, resourceURI, propertyURI, oldObjectValue, newObjectValue, valueType, dataType, detailData) {
+    updateObjectTriples (endpointParameters, user, graphName, resourceURI, propertyURI, oldObjectValue, newObjectValue, valueType, dataType, detailData) {
         let self=this;
         self.query = self.deleteTriple(endpointParameters, user, graphName, resourceURI, propertyURI, oldObjectValue, valueType, dataType) + ' ; ' + self.addTriple(endpointParameters, user, graphName, resourceURI, propertyURI, newObjectValue, valueType, dataType) + ' ; ';
         for (let propURI in detailData) {
