@@ -26,7 +26,7 @@ class DatasetReactor extends React.Component {
         });
         if(user && user.accountName !== 'open' && !parseInt(user.isSuperUser)) {
             toaster.notify("New resource based on the template resource will be created. Admin will review the changes soon.", {
-                duration: 5000
+                duration: 7000
             });
         }
     }

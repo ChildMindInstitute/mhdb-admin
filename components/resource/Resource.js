@@ -23,7 +23,7 @@ class Resource extends React.Component {
     showNotification(user, message) {
         if(user && user.accountName !== 'open' && !parseInt(user.isSuperUser)) {
             toaster.notify(message, {
-                duration: 5000
+                duration: 7000
             });
         }
     }
@@ -34,18 +34,13 @@ class Resource extends React.Component {
         });
         e.stopPropagation();
     }
-    handleDeleteResource(datasetURI, resourceURI, user, e) {
+    handleDeleteResource(datasetURI, resourceURI, user, e) { 
         let result = confirm('Are you sure you want to delete this resource?');
         if (result) {
             this.context.executeAction(deleteResource, {
                 dataset: datasetURI,
                 resourceURI: resourceURI
             });
-            if(user && user.accountName !== 'open' && !parseInt(user.isSuperUser)) {
-                toaster.notify(message, {
-                    duration: 5000
-                });
-            }
             let message = "isPendingDelete property will be added to Actions tab. Admin will delete the resouse soon."
             this.showNotification(user, message);
         }

@@ -10,12 +10,20 @@ import updateIndividualObjectDetail from '../../actions/updateIndividualObjectDe
 import updateAggObject from '../../actions/updateAggObject';
 import deleteAggObject from '../../actions/deleteAggObject';
 import IndividualProperty from '../property/IndividualProperty';
+import toaster from "toasted-notes";
 
 class PropertyReactor extends React.Component {
     constructor(props) {
         super(props);
     }
-    handleDeleteProperty() {
+    showNotification(user, message) {
+        if(user && user.accountName !== 'open' && !parseInt(user.isSuperUser)) {
+            toaster.notify(message, {
+                duration: 7000
+            });
+        }
+    }
+    handleDeleteProperty(user) {
         this.context.executeAction(deleteProperty, {
             category: (this.props.config
                 ? (this.props.config.category
@@ -27,8 +35,10 @@ class PropertyReactor extends React.Component {
             propertyPath: this.props.propertyPath,
             propertyURI: this.props.spec.propertyURI
         });
+        let message = "hasPendingPropertyDelete will be added to Actions tab. Admin will confirm the changes soon."
+        this.showNotification(user, message);
     }
-    handleDeleteIndividualObject(objectValue, valueType, dataType) {
+    handleDeleteIndividualObject(objectValue, valueType, dataType, user) {
         if (!objectValue) {
             return null;
         }
@@ -46,6 +56,8 @@ class PropertyReactor extends React.Component {
             valueType: valueType,
             dataType: dataType
         });
+        let message = "hasPendingPropertyDelete will be added to Actions tab. Admin will confirm the changes soon."
+        this.showNotification(user, message);
     }
     handleDeleteAggObject(changes) {
         if (!changes.length) {
@@ -89,7 +101,7 @@ class PropertyReactor extends React.Component {
         });
         this.setState({inNewValueMode: 0});
     }
-    handleUpdateIndividualObject(oldObjectValue, newObjectValue, valueType, dataType) {
+    handleUpdateIndividualObject(oldObjectValue, newObjectValue, valueType, dataType, user) {
         if (!newObjectValue) {
             return null;
         }
@@ -108,6 +120,8 @@ class PropertyReactor extends React.Component {
             valueType: valueType,
             dataType: dataType
         });
+        let message = "hasPendingPropertyDelete and hasPendingPropertyCreate properties with old and new values will be added to Actions tab. Admin will confirm the changes soon."
+        this.showNotification(user, message);
     }
     handleUpdateAggObject(changes) {
         if (!changes.length) {
@@ -200,7 +214,7 @@ class PropertyReactor extends React.Component {
         ){
             propDeleteDIV = <div className="ui list">
                 <div className="item">
-                    <div  className="medium ui basic icon labeled button" onClick={this.handleDeleteProperty.bind(this)}>
+                    <div  className="medium ui basic icon labeled button" onClick={this.handleDeleteProperty.bind(this, user)}>
                         <i className="trash alternate outline large red icon "></i> &nbsp; Delete <strong> {(propConfig && propConfig.label) ? propConfig.label : this.props.spec.property}</strong> property
                     </div>
                 </div>

@@ -102,7 +102,7 @@ class IndividualObject extends React.Component {
     handleDetailDataEdit(detailData) {
         this.setState({detailData: detailData});
     }
-    handleSave() {
+    handleSave(user) {
         if(this.props.isNewValue){
             this.props.onCreate(this.state.objectValue, this.props.spec.valueType, this.props.spec.dataType);
         }else{
@@ -120,14 +120,14 @@ class IndividualObject extends React.Component {
             }else{
                 //update only in case of change
                 if(this.props.spec.value !== this.state.objectValue){
-                    this.props.onUpdate(this.props.spec.value, this.state.objectValue, this.props.spec.valueType, this.props.spec.dataType);
+                    this.props.onUpdate(this.props.spec.value, this.state.objectValue, this.props.spec.valueType, this.props.spec.dataType, user);
                 }
                 this.setState({inEditMode: 0});
             }
         }
     }
-    handleDelete() {
-        this.props.onDelete(this.props.spec.value, this.props.spec.valueType, this.props.spec.dataType);
+    handleDelete(user) {
+        this.props.onDelete(this.props.spec.value, this.props.spec.valueType, this.props.spec.dataType, user);
     }
     handleUndo() {
         this.setState({objectValue: this.props.spec.value, inEditMode: 0, isExtendedView: 0});
@@ -140,6 +140,7 @@ class IndividualObject extends React.Component {
         this.setState({isExtendedView: 0});
     }
     render() {
+        let user = this.context.getUser();
         //add object Properties only to the relevant ones
         if(this.state.isExtendedView){
             if(this.props.spec.extended){
@@ -183,7 +184,7 @@ class IndividualObject extends React.Component {
         }
         let dataViewType, dataEditType;
         if (this.state.inEditMode) {
-            dataEditType = <ObjectIEditor isDefault={false} resource={this.props.resource} property={this.props.property} spec={this.props.spec} config={this.props.config} onDataEdit={this.handleDataEdit.bind(this)} onDetailDataEdit={this.handleDetailDataEdit.bind(this)} onEnterPress={this.handleSave.bind(this)}/>;
+            dataEditType = <ObjectIEditor isDefault={false} resource={this.props.resource} property={this.props.property} spec={this.props.spec} config={this.props.config} onDataEdit={this.handleDataEdit.bind(this)} onDetailDataEdit={this.handleDetailDataEdit.bind(this)} onEnterPress={this.handleSave.bind(this, user)}/>;
         }else{
             dataViewType = <ObjectIViewer onObjectClick={this.handleOnObjectClick.bind(this)} datasetURI={this.props.datasetURI} spec={this.props.spec} config={this.props.config} resource={this.props.resource} property={this.props.property}/>;
         }
@@ -193,7 +194,7 @@ class IndividualObject extends React.Component {
             editDIV = <div ref="edit" title="edit" onClick={this.handleEdit.bind(this)} className="medium ui circular basic icon button">
                 <i className="edit large blue icon link "></i>
             </div>;
-            saveDIV = <div ref="save" title="save" onClick={this.handleSave.bind(this)} className="medium ui circular basic icon button">
+            saveDIV = <div ref="save" title="save" onClick={this.handleSave.bind(this, user)} className="medium ui circular basic icon button">
                 <i className="save large green icon link "></i>
             </div>;
             if(!this.props.isNewValue){
@@ -202,7 +203,7 @@ class IndividualObject extends React.Component {
                 </div>;
             }
             if(this.props.config && this.props.config.allowNewValue && !this.props.isOnlyChild){
-                deleteDIV = <div ref="delete" title="delete" onClick={this.handleDelete.bind(this)} className="medium ui circular basic icon button">
+                deleteDIV = <div ref="delete" title="delete" onClick={this.handleDelete.bind(this, user)} className="medium ui circular basic icon button">
                     <i className="trash alternate outline large red icon link "></i>
                 </div>;
             }
@@ -263,6 +264,7 @@ class IndividualObject extends React.Component {
     }
 }
 IndividualObject.contextTypes = {
-    executeAction: PropTypes.func.isRequired
+    executeAction: PropTypes.func.isRequired,
+    getUser: PropTypes.func
 };
 export default IndividualObject;

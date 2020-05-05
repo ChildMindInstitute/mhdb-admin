@@ -266,13 +266,13 @@ class ResourceQuery{
     deleteTriple(endpointParameters, user, graphName, resourceURI, propertyURI, objectValue, valueType, dataType) {
         let dtype, newValue, tmp = {};
         let {gStart, gEnd} = this.prepareGraphName(graphName);
-        if((user && user.accountName !== 'open' && !parseInt(user.isSuperUser)) &&
-            !this.ignoredForPendingProperties.includes(propertyURI)){
-            // if deleted not by superuser - add property hasPropertyPendingDelete
-            let propertyURIandValue = `${propertyURI} = ${objectValue}`
-            return this.addTriple(endpointParameters, user, graphName, resourceURI, this.hasPropertyPendingDeleteURI, propertyURIandValue)
-        }
         if(objectValue){
+            if((user && user.accountName !== 'open' && !parseInt(user.isSuperUser)) &&
+                !this.ignoredForPendingProperties.includes(propertyURI)){
+                // if deleted not by superuser - add property hasPropertyPendingDelete
+                let propertyURIandValue = `${propertyURI} = ${objectValue}`
+                return this.addTriple(endpointParameters, user, graphName, resourceURI, this.hasPropertyPendingDeleteURI, propertyURIandValue)
+            }
             tmp = getQueryDataTypeValue(valueType, dataType, objectValue);
             newValue = tmp.value;
             dtype = tmp.dtype;
@@ -290,6 +290,11 @@ class ResourceQuery{
                 }
             `;
         }else{
+            if((user && user.accountName !== 'open' && !parseInt(user.isSuperUser)) &&
+                !this.ignoredForPendingProperties.includes(propertyURI)){
+                // if deleted not by superuser - add property hasPropertyPendingDelete
+                return this.addTriple(endpointParameters, user, graphName, resourceURI, this.hasPropertyPendingDeleteURI, propertyURI)
+            }
             this.query = `
                 DELETE {
                     ${gStart}

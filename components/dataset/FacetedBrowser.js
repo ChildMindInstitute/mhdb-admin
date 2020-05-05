@@ -20,7 +20,7 @@ class FacetedBrowser extends React.Component {
     showNotification(user, message) {
         if(user && user.accountName !== 'open' && !parseInt(user.isSuperUser)) {
             toaster.notify(message, {
-                duration: 5000
+                duration: 7000
             });
         }
     }
