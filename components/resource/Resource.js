@@ -5,8 +5,7 @@ import {NavLink} from 'fluxible-router';
 import URIUtil from '../utils/URIUtil';
 import cloneResource from '../../actions/cloneResource';
 import deleteResource from '../../actions/deleteResource';
-import toaster from "toasted-notes";
-//import "toasted-notes/src/styles.css"; 
+import {showNotification} from '../../services/utils/helpers';
 
 class Resource extends React.Component {
     constructor(props) {
@@ -17,13 +16,6 @@ class Resource extends React.Component {
         if(this.props.config && this.props.config.readOnly){
             let body = $('html, body');
             body.stop().animate({scrollTop:0}, '500', 'swing', function() {
-            });
-        }
-    }
-    showNotification(user, message) {
-        if(user && user.accountName !== 'open' && !parseInt(user.isSuperUser)) {
-            toaster.notify(message, {
-                duration: 7000
             });
         }
     }
@@ -42,7 +34,7 @@ class Resource extends React.Component {
                 resourceURI: resourceURI
             });
             let message = "isPendingDelete property will be added to Actions tab. Admin will delete the resouse soon."
-            this.showNotification(user, message);
+            showNotification(user, message);
         }
         e.stopPropagation();
     }

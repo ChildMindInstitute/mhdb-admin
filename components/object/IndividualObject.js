@@ -104,7 +104,7 @@ class IndividualObject extends React.Component {
     }
     handleSave(user) {
         if(this.props.isNewValue){
-            this.props.onCreate(this.state.objectValue, this.props.spec.valueType, this.props.spec.dataType);
+            this.props.onCreate(this.state.objectValue, this.props.spec.valueType, this.props.spec.dataType, user);
         }else{
             //check if it is extended
             if(this.props.spec.extended || this.state.isExtendedView){

@@ -2,6 +2,7 @@ import {sparqlEndpoint} from '../../configs/server';
 import {defaultDatasetURI, enableDynamicServerConfiguration, enableAuthentication} from '../../configs/general';
 import validUrl from 'valid-url';
 import queryString from 'query-string';
+import toaster from "toasted-notes";
 
 let prepareStaticDGFunc = (datasetURI)=>{
     let d = datasetURI, g = datasetURI;
@@ -341,5 +342,12 @@ export default {
             dtype = 'iri';
         }
         return {dtype: dtype, value: newValue};
+    },
+    showNotification(user, message) {
+        if(user && user.accountName !== 'open' && !parseInt(user.isSuperUser)) {
+            toaster.notify(message, {
+                duration: 7000
+            });
+        }
     }
 }

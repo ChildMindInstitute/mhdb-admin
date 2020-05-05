@@ -11,6 +11,7 @@ import CSVMappingResource from '../resource/CSVMappingResource';
 import createProperty from '../../actions/createProperty';
 import ReactDOM from 'react-dom';
 import PrefixBasedInput from '../object/editor/individual/PrefixBasedInput';
+import {showNotification} from '../../services/utils/helpers';
 
 class ResourceReactor extends React.Component {
     constructor(props) {
@@ -19,6 +20,13 @@ class ResourceReactor extends React.Component {
             newPropURI: '',
             newObjetValue: ''
         };
+    }
+    showNotification(user, message) {
+        if(user && user.accountName !== 'open' && !parseInt(user.isSuperUser)) {
+            toaster.notify(message, {
+                duration: 7000
+            });
+        }
     }
     //removes properties from an object
     configMinus(config, props) {
@@ -30,7 +38,7 @@ class ResourceReactor extends React.Component {
         }
         return o;
     }
-    handleNewProperty(e) {
+    handleNewProperty(e, user) {
         let self = this;
         if(this.state.newPropURI && this.state.newObjetValue){
             this.context.executeAction(createProperty, {
@@ -40,6 +48,8 @@ class ResourceReactor extends React.Component {
                 objectValue: this.state.newObjetValue
             });
         }
+        let message = "hasPendingPropertyCreate property will be added to Actions tab. Admin will confirm the changes soon."
+        showNotification(user, message);
     }
     handleNewPropertyEdit(v) {
         this.setState({newPropURI: v.trim()});
@@ -48,6 +58,7 @@ class ResourceReactor extends React.Component {
         this.setState({newObjetValue: v.trim()});
     }
     render() {
+        let user = this.context.getUser();
         let datasetURI = this.props.ResourceStore.datasetURI;
         let properties = this.props.ResourceStore.properties;
         let resourceURI = this.props.ResourceStore.resourceURI;
@@ -87,7 +98,7 @@ class ResourceReactor extends React.Component {
                 <div className="ui column"><div className="ui grey message form">
                     <PrefixBasedInput includeOnly={['ldrProperties','properties']} noFocus={true} spec={{value:''}} onDataEdit={this.handleNewPropertyEdit.bind(this)} placeholder="Enter the URI of the property. You can use common prefixes e.g. foaf:name"/>
                     <PrefixBasedInput noFocus={true} spec={{value:''}} onDataEdit={this.handleNewObjectValueEdit.bind(this)} placeholder="Value of the property" onEnterPress={this.handleNewProperty.bind(this)} allowActionByKey={true}/>
-                    <button className="fluid ui primary icon button" onClick={this.handleNewProperty.bind(this)}><i className="icon square add"></i>Add Property/Value</button>
+                    <button className="fluid ui primary icon button" onClick={this.handleNewProperty.bind(this, user)}><i className="icon square add"></i>Add Property/Value</button>
                 </div></div></div></div>;
         }
         let itemTypes = '';
