@@ -224,6 +224,7 @@ class PrefixBasedInput extends React.Component {
         this.props.onDataEdit(this.applyPrefix(obj.result.title.trim()));
     }
     handleSearchChange(alist, event, value) {
+        console.log("alist "+alist[0])
         this.props.onDataEdit(this.applyPrefix(event.target.value.trim()));
         this.setState({ isLoading: true, value: event.target.value });
         setTimeout(() => {
@@ -242,8 +243,10 @@ class PrefixBasedInput extends React.Component {
     render() {
         let alist = [];
         //customize the autocompelte list
+        //console.log("props" + this.props.autocompletelist.length)
         if(this.props.autocompletelist && this.props.autocompletelist.length){
             alist = this.props.autocompletelist;
+            console.log("props alist"+alist);
         }else if(this.props.config && this.props.config.autocompletelist && this.props.config.autocompletelist.length){
             alist = this.props.config.autocompletelist;
         }else if(this.props.includeOnly && this.props.includeOnly.length){
