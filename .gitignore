@@ -13,3 +13,4 @@ uploaded/*.tsv
 uploaded/*.json
 npm-debug.log
 /*.env
+configs/server.js
