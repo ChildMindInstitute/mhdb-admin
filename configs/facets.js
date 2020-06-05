@@ -72,10 +72,20 @@ export default {
         //     }
         // }
         'http://51.68.79.244:7200': {
-            list: ['http://www.purl.org/mentalhealth/mhdb-resources#hasProjectCategory'],
+            list: ['http://www.purl.org/mentalhealth/mhdb-resources#hasProjectCategory', 
+            'http://www.purl.org/mentalhealth/mhdb-resources#isMaintainedByGroup',
+            'http://www.purl.org/mentalhealth/mhdb-resources#isReferencedBy'],
             config: {
                 'http://www.purl.org/mentalhealth/mhdb-resources#hasProjectCategory': {
                     label: ['Category'],
+                    hasLinkedValue: 1
+                },
+                'http://www.purl.org/mentalhealth/mhdb-resources#isMaintainedByGroup': {
+                    label: ['Group'],
+                    hasLinkedValue: 1
+                },
+                'http://www.purl.org/mentalhealth/mhdb-resources#isReferencedBy': {
+                    label: ['Reference'],
                     hasLinkedValue: 1
                 },
             }
