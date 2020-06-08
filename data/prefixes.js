@@ -1788,6 +1788,7 @@ module.exports = {
         'xapi': 'http://purl.org/xapi/ontology#',
         'yd': 'https://yodata.io/',
         'dwciri': 'http://rs.tdwg.org/dwc/iri/',
-        'sdterms': 'http://statisticaldata.linkedwidgets.org/terms/'
+        'sdterms': 'http://statisticaldata.linkedwidgets.org/terms/',
+        'mhdb-resources': 'http://www.purl.org/mentalhealth/mhdb-resources#'
     }
 }
