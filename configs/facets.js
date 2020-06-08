@@ -71,7 +71,7 @@ export default {
         //         }
         //     }
         // }
-        'http://51.68.79.244:7200': {
+        'project_test': {
             list: ['http://www.purl.org/mentalhealth/mhdb-resources#hasProjectCategory', 
             'http://www.purl.org/mentalhealth/mhdb-resources#isMaintainedByGroup',
             'http://www.purl.org/mentalhealth/mhdb-resources#isReferencedBy'],
@@ -86,6 +86,62 @@ export default {
                 },
                 'http://www.purl.org/mentalhealth/mhdb-resources#isReferencedBy': {
                     label: ['Reference'],
+                    hasLinkedValue: 1
+                },
+            }
+        },
+        'group': {
+            list: ['http://www.purl.org/mentalhealth/mhdb-resources#hasMember', 
+            'http://www.purl.org/mentalhealth/mhdb-resources#isGroupMemberOf',
+            'http://www.purl.org/mentalhealth/mhdb-resources#hasProjectCategory'],
+            config: {
+                'http://www.purl.org/mentalhealth/mhdb-resources#hasMember': {
+                    label: ['Members'],
+                    hasLinkedValue: 1
+                },
+                'http://www.purl.org/mentalhealth/mhdb-resources#isGroupMemberOf': {
+                    label: ['Member of'],
+                    hasLinkedValue: 1
+                },
+                'http://www.purl.org/mentalhealth/mhdb-resources#hasProjectCategory': {
+                    label: ['Project category'],
+                    hasLinkedValue: 1
+                },
+            }
+        },
+        'organization': {
+            list: ['http://www.purl.org/mentalhealth/mhdb-resources#hasMember', ],
+            config: {
+                'http://www.purl.org/mentalhealth/mhdb-resources#hasMember': {
+                    label: ['Members'],
+                    hasLinkedValue: 1
+                }
+            }
+        },
+        'bibliographic_resource': {
+            list: ['http://www.purl.org/mentalhealth/mhdb-resources#hasLanguage', 
+            'http://www.purl.org/mentalhealth/mhdb-resources#hasPublisher',
+            'http://www.purl.org/mentalhealth/mhdb-resources#hasReferenceType'],
+            config: {
+                'http://www.purl.org/mentalhealth/mhdb-resources#hasLanguage': {
+                    label: ['Language'],
+                    hasLinkedValue: 1
+                },
+                'http://www.purl.org/mentalhealth/mhdb-resources#hasPublisher': {
+                    label: ['Publisher'],
+                    hasLinkedValue: 1
+                },
+                'http://www.purl.org/mentalhealth/mhdb-resources#hasReferenceType': {
+                    label: ['Type'],
+                    hasLinkedValue: 1
+                },
+            }
+        },
+        'classes': {
+            list: ['http://www.w3.org/2000/01/rdf-schema#subClassOf'],
+            config: {
+                'http://www.w3.org/2000/01/rdf-schema#subClassOf': {
+                    label: ['Class'],
                     hasLinkedValue: 1
                 },
             }
@@ -105,35 +161,35 @@ export default {
                 },
             }
         },
-        'chills': {
-            list: ['http://www.purl.org/mentalhealth/chills#hasArticleType',
-                'http://www.purl.org/mentalhealth/chills#hasPrimaryResearcher',
-                'http://www.purl.org/mentalhealth/chills#hasStimulusCategory',
-                'http://www.purl.org/mentalhealth/chills#hasSensor',
-                'http://www.purl.org/mentalhealth/chills#hasUnit'],
-            config: {
-                'http://www.purl.org/mentalhealth/chills#hasArticleType': {
-                    hasLinkedValue: 1,
-                    label: ['Article type'],
-                },
-                'http://www.purl.org/mentalhealth/chills#hasPrimaryResearcher': {
-                    hasLinkedValue: 1,
-                    label: ['Primary researcher'],
-                },
-                'http://www.purl.org/mentalhealth/chills#hasStimulusCategory': {
-                    hasLinkedValue: 1,
-                    label: ['Stimulus Category'],
-                },
-                'http://www.purl.org/mentalhealth/chills#hasSensor': {
-                    hasLinkedValue: 1,
-                    label: ['Sensor'],
-                },
-                'http://www.purl.org/mentalhealth/chills#hasUnit': {
-                    hasLinkedValue: 1,
-                    label: ['Unit'],
-                },
-            }
-        },
+        // 'chills': {
+        //     list: ['http://www.purl.org/mentalhealth/chills#hasArticleType',
+        //         'http://www.purl.org/mentalhealth/chills#hasPrimaryResearcher',
+        //         'http://www.purl.org/mentalhealth/chills#hasStimulusCategory',
+        //         'http://www.purl.org/mentalhealth/chills#hasSensor',
+        //         'http://www.purl.org/mentalhealth/chills#hasUnit'],
+        //     config: {
+        //         'http://www.purl.org/mentalhealth/chills#hasArticleType': {
+        //             hasLinkedValue: 1,
+        //             label: ['Article type'],
+        //         },
+        //         'http://www.purl.org/mentalhealth/chills#hasPrimaryResearcher': {
+        //             hasLinkedValue: 1,
+        //             label: ['Primary researcher'],
+        //         },
+        //         'http://www.purl.org/mentalhealth/chills#hasStimulusCategory': {
+        //             hasLinkedValue: 1,
+        //             label: ['Stimulus Category'],
+        //         },
+        //         'http://www.purl.org/mentalhealth/chills#hasSensor': {
+        //             hasLinkedValue: 1,
+        //             label: ['Sensor'],
+        //         },
+        //         'http://www.purl.org/mentalhealth/chills#hasUnit': {
+        //             hasLinkedValue: 1,
+        //             label: ['Unit'],
+        //         },
+        //     }
+        // },
         // 'history': {
         //     list: ['http://www.ontotext.com/at/subject', 'http://www.ontotext.com/at/predicate', 'http://www.ontotext.com/at/insert'],
         //     config: {

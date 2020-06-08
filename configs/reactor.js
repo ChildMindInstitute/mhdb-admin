@@ -45,7 +45,7 @@ export default {
             //     objectIViewer: ['PrefixBasedView'],
             //     objectIEditor: ['PrefixBasedInput'],
             // },
-            'http://51.68.79.244:7200': {
+            'project_test': {
                 //resourceFocusType: [],
                 //datasetReactor: ['Dataset'],
                 //datasetViewer: ['BasicResourceList'],
@@ -54,6 +54,41 @@ export default {
                 resourceFocusType: ['http://www.purl.org/mentalhealth/mhdb-resources#Project'],
                 //hasBlankNode: 1,
             },
+            'person': {
+                //datasetLabel: ['Person types'],
+                //templateResource: ['http://www.purl.org/mentalhealth/mhdb-resources#Spire'], 
+                resourceFocusType: ['http://www.purl.org/mentalhealth/mhdb-resources#PersonType'],
+                resourceLabelProperty: ['http://www.purl.org/mentalhealth/mhdb-resources#hasName'],
+            },
+            'group': {
+                //datasetLabel: ['Person types'],
+                //templateResource: ['http://www.purl.org/mentalhealth/mhdb-resources#Spire'], 
+                resourceFocusType: ['http://www.purl.org/mentalhealth/mhdb-resources#Group'],
+            },
+            'organization': {
+                //datasetLabel: ['Person types'],
+                //templateResource: ['http://www.purl.org/mentalhealth/mhdb-resources#Spire'], 
+                resourceFocusType: ['http://www.purl.org/mentalhealth/mhdb-resources#Organization'],
+            },
+            'bibliographic_resource': {
+                //datasetLabel: ['Person types'],
+                //templateResource: ['http://www.purl.org/mentalhealth/mhdb-resources#Spire'], 
+                resourceFocusType: ['http://www.purl.org/mentalhealth/mhdb-resources#BibliographicResource'],
+            },
+            'classes': {
+                //datasetLabel: ['Person types'],
+                //templateResource: ['http://www.purl.org/mentalhealth/mhdb-resources#Spire'], 
+                resourceFocusType: ['http://www.w3.org/1999/02/22-rdf-syntax-ns#Class', 'http://www.w3.org/2002/07/owl#Class'],
+            },
+            // 'projects1_test': {
+            //     //resourceFocusType: [],
+            //     //datasetReactor: ['Dataset'],
+            //     //datasetViewer: ['BasicResourceList'],
+            //     datasetLabel: ['Projects1 Test'],
+            //     templateResource: ['http://www.purl.org/mentalhealth/mhdb-resources#Spire'], 
+            //     resourceFocusType: ['http://www.purl.org/mentalhealth/mhdb-resources#Project'],
+            //     //hasBlankNode: 1,
+            // },
             'admin': {
                 datasetLabel: ['admin'],
                 allowResourceClone: 1,
