@@ -93,7 +93,15 @@ export default {
                 datasetLabel: ['admin'],
                 allowResourceClone: 1,
                 templateResource: ['http://www.purl.org/mentalhealth/mhdb-resources#Spire'], 
-                resourceFocusType: ['http://www.purl.org/mentalhealth/mhdb-resources#Project', 'http://examples.ontotext.com/family#Papers'],
+                resourceFocusType: [
+                    'http://www.purl.org/mentalhealth/mhdb-resources#Project', 
+                    'http://www.purl.org/mentalhealth/mhdb-resources#PersonType',
+                    'http://www.purl.org/mentalhealth/mhdb-resources#Group',
+                    'http://www.purl.org/mentalhealth/mhdb-resources#Organization',
+                    'http://www.purl.org/mentalhealth/mhdb-resources#BibliographicResource',
+                    'http://www.w3.org/1999/02/22-rdf-syntax-ns#Class', 
+                    'http://www.w3.org/2002/07/owl#Class'
+                ],
                 allowExtension: 1,
                 //hasBlankNode: 1,
                 hasLimitedAccess: 1,
