@@ -713,9 +713,6 @@ export default {
             //         objectIViewer: ['BasicIndividualInput'],
             //     }
             // },
-            'http://51.68.79.244:7200': {
-                
-            }
         },
         resource_property: {
 
