@@ -1,42 +1,7 @@
-[![Dependency Status](https://david-dm.org/ali1k/ld-r.svg)](https://david-dm.org/ali1k/ld-r)
-[![devDependency Status](https://david-dm.org/ali1k/ld-r/dev-status.svg)](https://david-dm.org/ali1k/ld-r#info=devDependencies)  [![Gitter](https://badges.gitter.im/dev-1pr/1pr.svg)](https://gitter.im/ld-r/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=body_badge)
+This application is developed based on the Linked Data Reactor framework. Linked Data Reactor (LD-Reactor or LD-R) is a framework to develop reactive and reusable User Interface components for Linked Data applications based on ReactJS, Flux, Fluxible and Semantic-UI. 
 
-# Linked Data Reactor
+Most of the configuration is done in the /configs files. In the code itself, besides other minor customizations, admin validation of database changes were added. 
 
-Linked Data Reactor (LD-Reactor or LD-R) is a framework to develop reactive and reusable User Interface components for Linked Data applications. LD-Reactor utilizes Facebook's ReactJS components, Flux architecture and Yahoo!'s Fluxible framework for isomorphic Web applications. It also exploits Semantic-UI framework for flexible UI themes. LD-Reactor aims to apply the idea of component-based application development into RDF data model hence enhancing current user interfaces to view, browse and edit Linked Data.
+The diff with the LD-R can be viewed [here](https://github.com/ali1k/ld-r/compare/master...charlie42:master) 
 
-## Quick Start
-
-### Installation
-
-You should have installed [NodeJS](https://nodejs.org/), [npm](https://github.com/npm/npm) and [Webpack](https://webpack.github.io/) on your system as prerequisite, then:
-
-Clone the repository: `git clone https://github.com/ali1k/ld-r.git`
-
-and simply run `./install` script
-
-### Configuration
-
-Fill in general settings for your application at `configs/general.js`.
-
-Fill in appropriate values for server port, URLs of your SPARQL endpoint and DBpedia lookup service at `configs/server.js`.
-
-Fll in appropriate settings for your UI reactors at `configs/reactor.js`.
-
-Fill in appropriate settings for the faceted browser at `configs/facets.js`.
-
-### Run in Production Mode
-
-`npm run build`
-
-check server at `localhost:4000`
-
-### Development Mode
-
-`npm run dev`
-
-check server at `localhost:3000`
-
-## Documentation
-
-Check out http://ld-r.org for detailed documentation.
+To start development, follow the [README of LD-R](https://github.com/ali1k/ld-r). Configurations file are already there, except configs/server.js that contains the database credentials. Copy the content of the configs/server.sample.js into the configs/server.js file and fill in the credentials.
