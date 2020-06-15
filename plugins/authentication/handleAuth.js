@@ -9,6 +9,7 @@ let handleEmail = require('../../plugins/email/handleEmail');
 let rp = require('request-promise');
 let config = require('../../configs/server');
 let generalConfig = require('../../configs/general');
+let reactorConfig = require('../../configs/reactor');
 let helpers = require('../../services/utils/helpers');
 
 let appShortTitle = generalConfig.appShortTitle;
@@ -128,6 +129,30 @@ let prepareGraphName = (graphName)=> {
     }
     return {gStart: gStart, gEnd: gEnd}
 };
+let datasetShouldBeEditable = (ds) => {
+    return (
+        ds !== generalConfig.authDatasetURI[0] 
+        && ds !== generalConfig.configDatasetURI[0] 
+        && ds !== generalConfig.mappingsDatasetURI[0] 
+        && ds !== 'generic' 
+        && !reactorConfig.config.dataset[ds].hasLimitedAccess 
+    )
+}
+// All new users can edit all datasets by default
+let prepareEditorOfDatasetsStrings = (blanknode, blanknodeStartingID) => {
+    let blanknodes = ""
+    let scopes = ""
+    let blanknodeID = blanknodeStartingID
+    for(let ds in reactorConfig.config.dataset){
+        if(datasetShouldBeEditable(ds)){
+            blanknodes += `, <${blanknode}${blanknodeID}>`
+            scopes += `
+                <${blanknode}${blanknodeID}> ldr:scope "D" ; ldr:dataset "${ds}" .`
+            blanknodeID += 1
+        }
+    }
+    return {blanknodes, scopes}
+}
 let addUserQueries = (req, res, recaptchaSiteKey) => {
     //first check if user already exists
     let endpoint = helpers.getStaticEndpointParameters([generalConfig.authDatasetURI[0]]);
@@ -159,6 +184,7 @@ let addUserQueries = (req, res, recaptchaSiteKey) => {
                 let isActive = generalConfig.enableUserConfirmation? 0 : 1;
                 let date = new Date();
                 let currentDate = date.toISOString(); //"2011-12-19T15:28:46.493Z"
+                const editorOfDatasetsStrings = prepareEditorOfDatasetsStrings(blanknode, 5);
                 query = `
                     PREFIX ldr: <https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#>
                     PREFIX foaf: <http://xmlns.com/foaf/0.1/>
@@ -178,7 +204,7 @@ let addUserQueries = (req, res, recaptchaSiteKey) => {
                                              ldr:isActive "${isActive}"^^xsd:Integer;
                                              ldr:isSuperUser "0"^^xsd:Integer;
                                              ldr:viewerOf <${blanknode}0> ;
-                                             ldr:editorOf <${blanknode}1>, <${blanknode}2>, <${blanknode}3>, <${blanknode}4>, <${blanknode}5> .
+                                             ldr:editorOf <${blanknode}1>, <${blanknode}2>, <${blanknode}3>, <${blanknode}4> ${editorOfDatasetsStrings.blanknodes} .
                                              <${blanknode}1> ldr:scope "RP" ; ldr:resource <${resourceURI}> ;
                                                              ldr:property foaf:firstName .
                                              <${blanknode}2> ldr:scope "RP" ; ldr:resource <${resourceURI}> ;
@@ -187,10 +213,11 @@ let addUserQueries = (req, res, recaptchaSiteKey) => {
                                                              ldr:property foaf:organization .
                                              <${blanknode}4> ldr:scope "RP" ; ldr:resource <${resourceURI}> ;
                                                              ldr:property ldr:password .
-                                             <${blanknode}5> ldr:scope "D" ; ldr:dataset <${generalConfig.defaultEditableDatasetURL}> .
+                                             ${editorOfDatasetsStrings.scopes} 
                         ${gEnd}
                     }
                 `;
+                console.log(query)
                 let HTTPQueryObject = helpers.getHTTPQuery('update', query, endpoint, outputFormat);
                 rp.post({uri: HTTPQueryObject.uri, form: HTTPQueryObject.params}).then(function(){
                     console.log('User is created!');
