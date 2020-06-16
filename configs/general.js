@@ -55,9 +55,4 @@ export default {
     enableCSVImport: 1,
     //graph that stores your mapping configurations for imprting other formats such as CSV
     mappingsDatasetURI: ['http://ld-r.org/mappings'],
-
-    //
-    // Custom config
-    //
-    defaultEditableDatasetURL: "http://51.68.79.244:7200",
 };
