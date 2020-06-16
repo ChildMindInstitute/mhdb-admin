@@ -13,7 +13,7 @@ export default {
     defaultDatasetURI: [''],
 
     //will prevent access if not logged in
-    enableAuthentication: 1,
+    enableAuthentication: 0,
     //graph that stores users data, must be loaded beforehand
     authDatasetURI: ['http://ld-r.org/users'],
     //will allow super users to confirm and activate regiastered users
