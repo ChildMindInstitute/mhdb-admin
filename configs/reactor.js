@@ -6,89 +6,49 @@ export default {
         dataset: {
             'generic': {
                 resourceFocusType: [],
-                //only allow to view data -> disable edit
-                readOnly: 1,
                 //used for pagination in resource list
                 maxNumberOfResourcesOnPage: 20,
                 datasetReactor: ['Dataset'],
                 datasetViewer: ['BasicResourceList'],
                 datasetLabel: ['graphdb'],
                 allowPropertyNew: 1,
+                //only allow to view data -> disable edit, needs both readOnly and readOnlyProperty
                 readOnly: 0,
+                readOnlyProperty: 0,
                 allowResourceNew: 1,
                 allowResourceClone: 0,
                 allowResourceDelete: 1,
                 allowExtension: 0,
-                //hasBlankNode: 1,
                 allowNewValue: 1,
                 allowPropertyDelete: 1,
                 objectIViewer: ['PrefixBasedView'],
                 objectIEditor: ['PrefixBasedInput'],
                 displayQueries: 0,
+                //if enabled, will categorize properties in different tabs based on property categories
+                usePropertyCategories: 1,
+                propertyCategories: ['Properties', 'Actions'],
             },
-            // 'http://localhost:7200': {
-            //     //resourceFocusType: [],
-            //     //datasetReactor: ['Dataset'],
-            //     //datasetViewer: ['BasicResourceList'],
-            //     datasetLabel: ['projects'],
-            //     allowPropertyNew: 1,
-            //     readOnly: 0,
-            //     allowResourceNew: 1,
-            //     allowResourceClone: 1,
-            //     allowResourceDelete: 1,
-            //     templateResource: ['http://www.purl.org/mentalhealth/mhdb-resources#Spire'], 
-            //     resourceFocusType: ['http://www.purl.org/mentalhealth/mhdb-resources#Project'],
-            //     allowExtension: 1,
-            //     //hasBlankNode: 1,
-            //     allowNewValue: 1,
-            //     allowPropertyDelete: 1,
-            //     objectIViewer: ['PrefixBasedView'],
-            //     objectIEditor: ['PrefixBasedInput'],
-            // },
             'project_test': {
-                //resourceFocusType: [],
-                //datasetReactor: ['Dataset'],
-                //datasetViewer: ['BasicResourceList'],
                 datasetLabel: ['Projects Test'],
                 templateResource: ['http://www.purl.org/mentalhealth/mhdb-resources#Spire'], 
                 resourceFocusType: ['http://www.purl.org/mentalhealth/mhdb-resources#Project'],
-                //hasBlankNode: 1,
             },
             'person': {
-                //datasetLabel: ['Person types'],
-                //templateResource: ['http://www.purl.org/mentalhealth/mhdb-resources#Spire'], 
                 resourceFocusType: ['http://www.purl.org/mentalhealth/mhdb-resources#PersonType'],
                 resourceLabelProperty: ['http://www.purl.org/mentalhealth/mhdb-resources#hasName'],
             },
             'group': {
-                //datasetLabel: ['Person types'],
-                //templateResource: ['http://www.purl.org/mentalhealth/mhdb-resources#Spire'], 
                 resourceFocusType: ['http://www.purl.org/mentalhealth/mhdb-resources#Group'],
             },
             'organization': {
-                //datasetLabel: ['Person types'],
-                //templateResource: ['http://www.purl.org/mentalhealth/mhdb-resources#Spire'], 
                 resourceFocusType: ['http://www.purl.org/mentalhealth/mhdb-resources#Organization'],
             },
             'bibliographic_resource': {
-                //datasetLabel: ['Person types'],
-                //templateResource: ['http://www.purl.org/mentalhealth/mhdb-resources#Spire'], 
                 resourceFocusType: ['http://www.purl.org/mentalhealth/mhdb-resources#BibliographicResource'],
             },
             'classes': {
-                //datasetLabel: ['Person types'],
-                //templateResource: ['http://www.purl.org/mentalhealth/mhdb-resources#Spire'], 
                 resourceFocusType: ['http://www.w3.org/1999/02/22-rdf-syntax-ns#Class', 'http://www.w3.org/2002/07/owl#Class'],
             },
-            // 'projects1_test': {
-            //     //resourceFocusType: [],
-            //     //datasetReactor: ['Dataset'],
-            //     //datasetViewer: ['BasicResourceList'],
-            //     datasetLabel: ['Projects1 Test'],
-            //     templateResource: ['http://www.purl.org/mentalhealth/mhdb-resources#Spire'], 
-            //     resourceFocusType: ['http://www.purl.org/mentalhealth/mhdb-resources#Project'],
-            //     //hasBlankNode: 1,
-            // },
             'admin': {
                 datasetLabel: ['admin'],
                 allowResourceClone: 1,
@@ -103,39 +63,15 @@ export default {
                     'http://www.w3.org/2002/07/owl#Class'
                 ],
                 allowExtension: 1,
-                //hasBlankNode: 1,
                 hasLimitedAccess: 1,
             },
-            // 'chills': {
-            //     //resourceFocusType: [],
-            //     //datasetReactor: ['Dataset'],
-            //     //datasetViewer: ['BasicResourceList'],
-            //     datasetLabel: ['chills papers'],
-            //     allowPropertyNew: 1,
-            //     readOnly: 1,
-            //     resourceFocusType: ['http://www.purl.org/mentalhealth/chills#Paper'],
-            //     objectIViewer: ['PrefixBasedView'],
-            //     objectIEditor: ['PrefixBasedInput'],
-            // },
-            // 'history': {
-            //     datasetLabel: ['history'],
-            //     readOnly: 1,
-            //     resourceFocusType: ['http://www.ontotext.com/at/history'],
-            //     resourceLabelProperty: ['http://www.ontotext.com/at/object']
-            // },
-            // 'http://54.210.58.138:7200/repositories/mhdb': {
-            //     //resourceFocusType: [],
-            //     //datasetReactor: ['Dataset'],
-            //     //datasetViewer: ['BasicResourceList'],
-            //     datasetLabel: ['graphdb2'],
-            //     //resourceFocusType: ['https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#User']
-            // },
             //authentication graph
             'http://ld-r.org/users': {
                 readOnly: 0,
                 resourceFocusType: ['https://github.com/ali1k/ld-reactor/blob/master/vocabulary/index.ttl#User'],
                 resourceLabelProperty: ['http://xmlns.com/foaf/0.1/accountName'],
-                allowPropertyNew: 1
+                allowPropertyNew: 1,
+                usePropertyCategories: 0,
             },
             'http://ld-r.org/configurations': {
                 readOnly: 0,
@@ -157,9 +93,6 @@ export default {
         },
         resource: {
             'generic': {
-                //if enabled, will categorize properties in different tabs based on property categories
-                usePropertyCategories: 1,
-                propertyCategories: ['Properties', 'Actions'],
                 //used when creating random resources
                 dynamicResourceDomain: ['http://example.org'],
                 resourceReactor: ['Resource']
@@ -275,6 +208,8 @@ export default {
             },
             'https://github.com/charlie42/ld-r-mhdb/blob/master/vocabulary/ld-r-mhdb.ttl#isPendingDelete': {
                 allowPropertyDelete: 1,
+                readOnly: 0,
+                readOnlyProperty: 0,
                 category: ['Actions'],
             },
             'https://github.com/charlie42/ld-r-mhdb/blob/master/vocabulary/ld-r-mhdb.ttl#hasPropertyPendingCreate': {
@@ -288,6 +223,8 @@ export default {
             },
             'https://github.com/charlie42/ld-r-mhdb/blob/master/vocabulary/ld-r-mhdb.ttl#hasPropertyPendingDelete': {
                 allowPropertyDelete: 1,
+                readOnly: 0,
+                readOnlyProperty: 0,
                 category: ['Actions'],
             },
         },
@@ -702,25 +639,6 @@ export default {
                     includeOnly: ['classes']
                 }
             },
-            // 'http://localhost:7200': {
-            //     'http://www.w3.org/2000/01/rdf-schema#label': {
-            //         allowExtension: 0,
-            //     },
-            //     'http://www.purl.org/mentalhealth/mhdb-resources#hasProjectCategory': {
-            //         objectIViewer: ['BasicLinkedIndividualView'],
-            //         objectIEditor: ['PrefixBasedInput'],
-            //         decodeURIComponent: 1,
-            //     },
-            //     'http://www.purl.org/mentalhealth/mhdb-resources#isMaintainedByGroup': {
-            //         objectIViewer: ['BasicLinkedIndividualView'],
-            //     },
-            //     'http://www.purl.org/mentalhealth/mhdb-resources#isReferencedBy': {
-            //         objectIViewer: ['BasicLinkedIndividualView'],
-            //     },
-            //     'http://www.purl.org/mentalhealth/mhdb-resources#hasWebsite': {
-            //         objectIViewer: ['BasicIndividualInput'],
-            //     }
-            // },
         },
         resource_property: {
 
