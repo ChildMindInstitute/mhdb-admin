@@ -61,8 +61,8 @@ export default {
         resource: {
             'generic': {
                 //if enabled, will categorize properties in different tabs based on property categories
-                usePropertyCategories: 1,
-                propertyCategories: ['Properties', 'Actions'],
+                //usePropertyCategories: 1,
+                //propertyCategories: ['Properties', 'Actions'],
                 //used when creating random resources
                 dynamicResourceDomain: ['http://example.org'],
                 resourceReactor: ['Resource']
@@ -79,7 +79,7 @@ export default {
                 extendedOEditor: ['BasicIndividualDetailEdit'],
                 extendedOViewer: ['BasicIndividualDetailView'],
                 shortenURI: 1,
-                category: ['Properties'],
+                //category: ['Properties'],
             },
             'http://www.w3.org/2000/01/rdf-schema#label': {
                 allowPropertyDelete: 0,
@@ -129,7 +129,66 @@ export default {
             },
             'http://www.w3.org/2000/01/rdf-schema#label': {
                 allowExtension: 0,
-                category: ['Properties'],
+            },
+            'http://www.purl.org/mentalhealth/chills#hasArticleType': {
+                objectIViewer: ['BasicLinkedIndividualView'],
+                label: ['Article type'],
+            },
+            'http://www.purl.org/mentalhealth/chills#hasPrimaryResearcher': {
+                objectIViewer: ['BasicLinkedIndividualView'],
+                label: ['Primary researcher'],
+            },
+            'http://www.purl.org/mentalhealth/chills#hasSecondaryResearcher': {
+                objectIViewer: ['BasicLinkedIndividualView'],
+                label: ['Secondary researcher'],
+            },
+            'http://www.purl.org/mentalhealth/chills#hasStimulusCategory': {
+                objectIViewer: ['BasicLinkedIndividualView'],
+                label: ['Stimulus category'],
+            },
+            'http://www.purl.org/mentalhealth/chills#hasSensor': {
+                objectIViewer: ['BasicLinkedIndividualView'],
+                label: ['Sensor'],
+            },
+            'http://www.purl.org/mentalhealth/chills#hasUnit': {
+                objectIViewer: ['BasicLinkedIndividualView'],
+                label: ['Unit'],
+            },
+            'http://www.purl.org/mentalhealth/chills#hasAbstract': {
+                label: ['Abstract'],
+            },
+            'http://www.purl.org/mentalhealth/chills#hasBrainArea': {
+                objectIViewer: ['BasicLinkedIndividualView'],
+                label: ['Brain area'],
+            },
+            'http://www.purl.org/mentalhealth/chills#hasClaim': {
+                objectIViewer: ['BasicLinkedIndividualView'],
+                label: ['Claim'],
+            },
+            'http://www.purl.org/mentalhealth/chills#hasDefinitionOfChills': {
+                objectIViewer: ['BasicLinkedIndividualView'],
+                label: ['Definition of chills'],
+            },
+            'http://www.purl.org/mentalhealth/chills#hasInference': {
+                objectIViewer: ['BasicLinkedIndividualView'],
+                label: ['Inference'],
+            },
+            'http://www.purl.org/mentalhealth/chills#hasMeasure': {
+                objectIViewer: ['BasicLinkedIndividualView'],
+                label: ['Measure'],
+            },
+            'http://www.purl.org/mentalhealth/chills#hasPublicationYear': {
+                label: ['Publication year'],
+            },
+            'http://www.purl.org/mentalhealth/chills#hasURL': {
+                label: ['URL'],
+            },
+            'http://www.purl.org/mentalhealth/chills#hasStimulusURL': {
+                label: ['Stimulus URL'],
+            },
+            'http://www.purl.org/mentalhealth/chills#hasSubjectiveSensor': {
+                objectIViewer: ['BasicLinkedIndividualView'],
+                label: ['Subjective sensor'],
             },
         },
         //---------depth 2------------
