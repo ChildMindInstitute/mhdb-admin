@@ -45,7 +45,6 @@ class Nav extends React.Component {
                     <NavLink routeName="home" className="brand item" href='/'>
                         {this.props.loading ? <img src="/assets/img/loader.gif" alt="loading..." style={{height: 30, width: 30}} /> : <img style={{height: 30, width: 'auto'}} className="ui mini image" src="/assets/img/mhdb-logo.png" alt="mhdb-log" />}
                     </NavLink>
-                    <NavLink routeName="aboutChills" className="item">About {appShortTitle} </NavLink>
                     <NavLink routeName="datasets" className="item" href="/datasets"> Datasets</NavLink>
                     <div className="right menu">
                         <div className="item link" onClick={this.showHelpModal}>
