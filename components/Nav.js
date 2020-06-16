@@ -43,7 +43,7 @@ class Nav extends React.Component {
             <div className="ui fluid container" ref="defaultNavbar">
                 <nav  className={'ui menu inverted navbar grid ' + navbarColor}>
                     <NavLink routeName="home" className="brand item" href='/'>
-                        {this.props.loading ? <img src="/assets/img/loader.gif" alt="loading..." style={{height: 30, width: 30}} /> : <img style={{height: 22, width: 22}} className="ui mini image" src="/assets/img/ld-reactor.gif" alt="ld-reactor" />}
+                        {this.props.loading ? <img src="/assets/img/loader.gif" alt="loading..." style={{height: 30, width: 30}} /> : <img style={{height: 30, width: 'auto'}} className="ui mini image" src="/assets/img/mhdb-logo.png" alt="mhdb-log" />}
                     </NavLink>
                     <NavLink routeName="aboutChills" className="item">About {appShortTitle} </NavLink>
                     <NavLink routeName="datasets" className="item" href="/datasets"> Datasets</NavLink>
@@ -54,7 +54,7 @@ class Nav extends React.Component {
                         {(enableDynamicReactorConfiguration || enableDynamicServerConfiguration || enableDynamicfacetsConfiguration) ?
                             configMenu
                             : ''}
-                        <a href="http://github.com/ali1k/ld-r" className="ui item link">
+                        <a href="https://github.com/charlie42/ld-r-mhdb" className="ui item link">
                             <i className="github circle icon"></i> Github
                         </a>
                         {userMenu}
