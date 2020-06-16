@@ -57,20 +57,6 @@ export default {
                 }
             }
         },
-        //Example Faceted Browser for DBpedia universities
-        // 'http://dbpedia.org/sparql': {
-        //     list: [
-        //         'http://www.w3.org/1999/02/22-rdf-syntax-ns#type', 'http://dbpedia.org/ontology/country', 'http://dbpedia.org/property/established'
-        //     ],
-        //     config: {
-        //         'http://dbpedia.org/property/established': {
-        //             label: ['Established Year']
-        //         },
-        //         'http://dbpedia.org/ontology/country': {
-        //             objectBrowser: ['TagListBrowser']
-        //         }
-        //     }
-        // }
         'project_test': {
             list: ['http://www.purl.org/mentalhealth/mhdb-resources#hasProjectCategory', 
             'http://www.purl.org/mentalhealth/mhdb-resources#isMaintainedByGroup',
@@ -161,42 +147,5 @@ export default {
                 },
             }
         },
-        // 'chills': {
-        //     list: ['http://www.purl.org/mentalhealth/chills#hasArticleType',
-        //         'http://www.purl.org/mentalhealth/chills#hasPrimaryResearcher',
-        //         'http://www.purl.org/mentalhealth/chills#hasStimulusCategory',
-        //         'http://www.purl.org/mentalhealth/chills#hasSensor',
-        //         'http://www.purl.org/mentalhealth/chills#hasUnit'],
-        //     config: {
-        //         'http://www.purl.org/mentalhealth/chills#hasArticleType': {
-        //             hasLinkedValue: 1,
-        //             label: ['Article type'],
-        //         },
-        //         'http://www.purl.org/mentalhealth/chills#hasPrimaryResearcher': {
-        //             hasLinkedValue: 1,
-        //             label: ['Primary researcher'],
-        //         },
-        //         'http://www.purl.org/mentalhealth/chills#hasStimulusCategory': {
-        //             hasLinkedValue: 1,
-        //             label: ['Stimulus Category'],
-        //         },
-        //         'http://www.purl.org/mentalhealth/chills#hasSensor': {
-        //             hasLinkedValue: 1,
-        //             label: ['Sensor'],
-        //         },
-        //         'http://www.purl.org/mentalhealth/chills#hasUnit': {
-        //             hasLinkedValue: 1,
-        //             label: ['Unit'],
-        //         },
-        //     }
-        // },
-        // 'history': {
-        //     list: ['http://www.ontotext.com/at/subject', 'http://www.ontotext.com/at/predicate', 'http://www.ontotext.com/at/insert'],
-        //     config: {
-        //         'http://www.ontotext.com/at/subject': {
-        //             label: ['Subject'],
-        //         },
-        //     }
-        // },
     }
 };
