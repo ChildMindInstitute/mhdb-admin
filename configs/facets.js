@@ -62,7 +62,13 @@ export default {
                 'http://www.purl.org/mentalhealth/chills#hasPrimaryResearcher',
                 'http://www.purl.org/mentalhealth/chills#hasStimulusCategory',
                 'http://www.purl.org/mentalhealth/chills#hasSensor',
-                'http://www.purl.org/mentalhealth/chills#hasUnit'],
+                'http://www.purl.org/mentalhealth/chills#hasUnit',
+                'http://www.purl.org/mentalhealth/chills#hasClaim',
+                'http://www.purl.org/mentalhealth/chills#hasInference',
+                'http://www.purl.org/mentalhealth/chills#hasMeasure',
+                'http://www.purl.org/mentalhealth/chills#hasPublicationYear',
+                'http://www.purl.org/mentalhealth/chills#hasSubjectiveSensor',
+            ],
             config: {
                 'http://www.purl.org/mentalhealth/chills#hasArticleType': {
                     hasLinkedValue: 1,
@@ -83,6 +89,25 @@ export default {
                 'http://www.purl.org/mentalhealth/chills#hasUnit': {
                     hasLinkedValue: 1,
                     label: ['Unit'],
+                },
+                'http://www.purl.org/mentalhealth/chills#hasClaim': {
+                    hasLinkedValue: 1,
+                    label: ['Claim'],
+                },
+                'http://www.purl.org/mentalhealth/chills#hasInference': {
+                    hasLinkedValue: 1,
+                    label: ['Inference'],
+                },
+                'http://www.purl.org/mentalhealth/chills#hasMeasure': {
+                    hasLinkedValue: 1,
+                    label: ['Measure'],
+                },
+                'http://www.purl.org/mentalhealth/chills#hasPublicationYear': {
+                    label: ['Publication year'],
+                },
+                'http://www.purl.org/mentalhealth/chills#hasSubjectiveSensor': {
+                    hasLinkedValue: 1,
+                    label: ['Subjective sensor'],
                 },
             }
         },
