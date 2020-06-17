@@ -57,7 +57,7 @@ export default {
                 }
             }
         },
-        'chills': {
+        'chills_papers': {
             list: ['http://www.purl.org/mentalhealth/chills#hasArticleType',
                 'http://www.purl.org/mentalhealth/chills#hasPrimaryResearcher',
                 'http://www.purl.org/mentalhealth/chills#hasStimulusCategory',

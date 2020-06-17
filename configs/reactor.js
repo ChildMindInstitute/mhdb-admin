@@ -24,7 +24,7 @@ export default {
                 objectIEditor: ['PrefixBasedInput'],
                 displayQueries: 0,
             },
-            'chills': {
+            'chills_papers': {
                 datasetLabel: ['Papers'],
                 allowPropertyNew: 0,
                 readOnly: 1,
@@ -32,6 +32,31 @@ export default {
                 objectIViewer: ['PrefixBasedView'],
                 objectIEditor: ['PrefixBasedInput'],
             },
+            // will be added when reverse relationships are added to ttl
+            // 'chills_claims': {
+            //     datasetLabel: ['Claims'],
+            //     allowPropertyNew: 0,
+            //     readOnly: 1,
+            //     resourceFocusType: ['http://www.purl.org/mentalhealth/chills#Claim'],
+            //     objectIViewer: ['PrefixBasedView'],
+            //     objectIEditor: ['PrefixBasedInput'],
+            // },
+            // 'chills_researchers': {
+            //     datasetLabel: ['Researchers'],
+            //     allowPropertyNew: 0,
+            //     readOnly: 1,
+            //     resourceFocusType: ['http://www.purl.org/mentalhealth/chills#Researcher'],
+            //     objectIViewer: ['PrefixBasedView'],
+            //     objectIEditor: ['PrefixBasedInput'],
+            // },
+            // 'chills_stimulus': {
+            //     datasetLabel: ['Stimuli'],
+            //     allowPropertyNew: 0,
+            //     readOnly: 1,
+            //     resourceFocusType: ['http://www.purl.org/mentalhealth/chills#Stimulus'],
+            //     objectIViewer: ['PrefixBasedView'],
+            //     objectIEditor: ['PrefixBasedInput'],
+            // },
             //authentication graph
             'http://ld-r.org/users': {
                 readOnly: 0,
@@ -188,6 +213,19 @@ export default {
             'http://www.purl.org/mentalhealth/chills#hasSubjectiveSensor': {
                 objectIViewer: ['BasicLinkedIndividualView'],
                 label: ['Subjective sensor'],
+            },
+            //researcher
+            'http://www.purl.org/mentalhealth/chills#hasContact': {
+                label: ['Contact'],
+            },
+            'http://www.purl.org/mentalhealth/chills#hasDiscipline': {
+                label: ['Discipline'],
+            },
+            'http://www.purl.org/mentalhealth/chills#hasLab': {
+                label: ['Lab'],
+            },
+            'http://www.purl.org/mentalhealth/chills#hasSite': {
+                label: ['Site'],
             },
         },
         //---------depth 2------------
