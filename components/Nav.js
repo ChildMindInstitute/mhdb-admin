@@ -45,8 +45,6 @@ class Nav extends React.Component {
                     <NavLink routeName="home" className="brand item" href='/'>
                         {this.props.loading ? <img src="/assets/img/loader.gif" alt="loading..." style={{height: 30, width: 30}} /> : <img style={{height: 22, width: 22}} className="ui mini image" src="/assets/img/ld-reactor.gif" alt="ld-reactor" />}
                     </NavLink>
-                    <NavLink routeName="aboutChills" className="item">About {appShortTitle} </NavLink>
-                    <NavLink routeName="datasets" className="item" href="/datasets"> Datasets</NavLink>
                     <div className="right menu">
                         <div className="item link" onClick={this.showHelpModal}>
                             <i className="small help circle icon"></i>
@@ -54,7 +52,7 @@ class Nav extends React.Component {
                         {(enableDynamicReactorConfiguration || enableDynamicServerConfiguration || enableDynamicfacetsConfiguration) ?
                             configMenu
                             : ''}
-                        <a href="http://github.com/ali1k/ld-r" className="ui item link">
+                        <a href="https://github.com/charlie42/ld-r-mhdb/tree/affectiverse-master" className="ui item link">
                             <i className="github circle icon"></i> Github
                         </a>
                         {userMenu}

@@ -8,6 +8,7 @@ import {enableAuthentication, defaultDatasetURI, enableAddingNewDatasets, enable
 import {checkViewAccess, checkEditAccess} from '../services/utils/accessManagement';
 import DatasetsStore from '../stores/DatasetsStore';
 import URIUtil from './utils/URIUtil';
+import Home from './Home'
 
 class Datasets extends React.Component {
     constructor (props) {
@@ -198,6 +199,7 @@ class Datasets extends React.Component {
                             : ''}
                     </div>
                 </div>
+                <Home/>
             </div>
         );
     }
