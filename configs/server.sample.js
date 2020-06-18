@@ -4,26 +4,50 @@ export default {
     serverPort: [4000],
     sparqlEndpoint: {
         'generic': {
-            host: 'localhost', port: 8890, path: '/sparql', endpointType: 'virtuoso'
+            host: '51.68.79.244', port: 7200, path: '/repositories/test', graphName: 'default', endpointType: 'graphdb', username: 'admin', password: 'admin'
         },
-        //Note: if graphName is not specified, the identifer used for configuration will be used as graphName
-        //Example config for connecting to a Stardog triple store, replace testDB with the name of your DB
-        // read more at https://www.stardog.com/docs/#_stardog_resources
-        'http://localhost:5820/testDB': {
-            host: 'localhost', port: 5820, path: '/testDB', graphName: 'default', endpointType: 'stardog', useReasoning: 0
+        'http://51.68.79.244:7200': {
+            host: '51.68.79.244', port: 7200, path: '/repositories/test', graphName: 'default', endpointType: 'graphdb', username: 'admin', password: 'admin'
         },
-        //Example for connecting to a Virtuoso triple store
-        'http://dbpedia.org/sparql': {
-            host: 'dbpedia.org', port: 80, path: '/sparql', graphName: 'default', endpointType: 'virtuoso'
+        'project_test': {
+            host: '51.68.79.244', port: 7200, path: '/repositories/test', graphName: 'default', endpointType: 'graphdb', username: 'admin', password: 'admin'
         },
-        //Example for connecting to a ClioPatria triple store
-        'http://localhost:3020/sparql/': {
-            host: 'localhost', port: 3020, path: '/sparql/', endpointType: 'ClioPatria'
+        'person': {
+            host: '51.68.79.244', port: 7200, path: '/repositories/test', graphName: 'default', endpointType: 'graphdb', username: 'admin', password: 'admin'
         },
-        //Example for connecting to a GraphDB triple store
-        'http://localhost:7200/repositories/test': {
-            host: 'localhost', port: 7200, path: '/repositories/test', endpointType: 'graphdb'
-        }
+        'group': {
+            host: '51.68.79.244', port: 7200, path: '/repositories/test', graphName: 'default', endpointType: 'graphdb', username: 'admin', password: 'admin'
+        },
+        'organization': {
+            host: '51.68.79.244', port: 7200, path: '/repositories/test', graphName: 'default', endpointType: 'graphdb', username: 'admin', password: 'admin'
+        },
+        'bibliographic_resource': {
+            host: '51.68.79.244', port: 7200, path: '/repositories/test', graphName: 'default', endpointType: 'graphdb', username: 'admin', password: 'admin'
+        },
+        'classes': {
+            host: '51.68.79.244', port: 7200, path: '/repositories/test', graphName: 'default', endpointType: 'graphdb', username: 'admin', password: 'admin'
+        },
+        'http://ld-r.org/users': {
+            host: '51.68.79.244', port: 7200, path: '/repositories/users', graphName: 'default', endpointType: 'graphdb', username: 'admin', password: 'admin'
+        },
+        'admin': {
+            host: '51.68.79.244', port: 7200, path: '/repositories/test', graphName: 'default', endpointType: 'graphdb', username: 'admin', password: 'admin'
+        },
+        'projects_prod': {
+            host: '51.68.79.244', port: 7200, path: '/repositories/prod', graphName: 'default', endpointType: 'graphdb', username: 'admin', password: 'admin'
+        },
+        'chills_papers': {
+           host: '51.68.79.244', port: 7200, path: '/repositories/test', graphName: 'default', endpointType: 'graphdb', username: 'admin', password: 'admin'
+        },
+        'chills_claims': {
+            host: '51.68.79.244', port: 7200, path: '/repositories/test', graphName: 'default', endpointType: 'graphdb', username: 'admin', password: 'admin'
+        },
+        'chills_researchers': {
+            host: '51.68.79.244', port: 7200, path: '/repositories/test', graphName: 'default', endpointType: 'graphdb', username: 'admin', password: 'admin'
+        },
+        'chills_stimulus': {
+            host: '51.68.79.244', port: 7200, path: '/repositories/test', graphName: 'default', endpointType: 'graphdb', username: 'admin', password: 'admin'
+        },
     },
     dbpediaLookupService: [
         { host: 'lookup.dbpedia.org' }
