@@ -28,16 +28,6 @@ export default {
             done();
         }
     },
-    aboutChills: {
-        path: '/aboutChills',
-        method: 'get',
-        handler: require('../components/AboutChills'),
-        label: 'AboutChills',
-        action: (context, payload, done) => {
-            context.dispatch('UPDATE_PAGE_TITLE', { pageTitle: appFullTitle + ' | About'});
-            done();
-        }
-    },
     importCSV: {
         path: '/importCSV',
         method: 'get',
