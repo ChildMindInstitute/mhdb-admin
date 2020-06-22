@@ -201,6 +201,7 @@ export default {
             'https://github.com/charlie42/ld-r-mhdb/blob/master/vocabulary/ld-r-mhdb.ttl#isPendingCreate': {
                 allowPropertyDelete: 0,
                 category: ['Actions'],
+                readOnlyProperty: 1,
                 //
                 // Custom config
                 //
@@ -215,7 +216,7 @@ export default {
             'https://github.com/charlie42/ld-r-mhdb/blob/master/vocabulary/ld-r-mhdb.ttl#hasPropertyPendingCreate': {
                 allowPropertyDelete: 0,
                 category: ['Actions'],
-
+                readOnlyProperty: 1,
                 //
                 // Custom config
                 //
