@@ -13,4 +13,6 @@
 - add autocomplete for mhdb properties, classes, prefixes, base URIs
 - add EditorOf scopes to new users for all datasets (except admin and config datasets)
 - UI changes (logo, github link, etc)
+- make datatasets page homepage
+- make display of the resource lookup form on the datasets page configurable
 - add logging to some files 
