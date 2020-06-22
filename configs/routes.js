@@ -11,11 +11,10 @@ export default {
     home: {
         path: '/',
         method: 'get',
-        handler: require('../components/Home'),
+        handler: require('../components/Datasets'),
         label: appShortTitle,
         action: (context, payload, done) => {
-            context.dispatch('UPDATE_PAGE_TITLE', { pageTitle: appFullTitle + ' | Home'});
-            done();
+            context.executeAction(loadDatasets, {}, done);
         }
     },
     about: {
@@ -86,16 +85,6 @@ export default {
                 //get && load the given state
                 context.executeAction(getLoadEnvState, {mode: 'init', id: decodeURIComponent(datasetURI), stateURI: stateURI, selection: 0, page: 1}, done);
             }
-        }
-    },
-    datasets: {
-        //if no id is provided -> will start by defaultDatasetURI in reactor.config
-        path: '/datasets',
-        method: 'get',
-        handler: require('../components/Datasets'),
-        label: 'Datasets',
-        action: (context, payload, done) => {
-            context.executeAction(loadDatasets, {}, done);
         }
     },
     dataset: {
