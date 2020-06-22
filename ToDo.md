@@ -1,13 +1,10 @@
-#TODO list
-- Design a smart routing algorithm for default routing of components (e.g. based on value types or components metadata).
-- Add interface for more Triple stores other than Virtuoso and Stardog.
-- Consider Language tag in SPARQL Queries.
-- Support LD-Fragment for streaming query results (useful esp. in facets).
-- Add infinite scrolling features to facets.
-- Add more customized facets (e.g. for taxonomical data, timeline, etc.).
-- Implement Aggregate Property Reactor.
-- In case of resource access level, find a way to update user session after a new resource is created by the user.
-- Adding Microdata annotations to components
-- test agg objects + Queries
-- add http authentication Support
-- extend export plugin for faceted browser and other cases when not all triples are needed
+- forbid add/edit for Actions properties, only leave delete
+- highlight pending properties and resources (not yet approved) to differenciate from the rest
+- resource view/edit in pop-up or same page instead of new page
+- dynamic autocomplete 
+- implement aggregate edit
+- meaningful URI ?
+- improve display of property values in facet browser (now comes directly from URI)
+- add vertical expand option in facets
+
+ToDo of LD-R project can be found [here](https://github.com/ali1k/ld-r/blob/master/ToDo.md)

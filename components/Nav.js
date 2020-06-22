@@ -52,7 +52,7 @@ class Nav extends React.Component {
                         {(enableDynamicReactorConfiguration || enableDynamicServerConfiguration || enableDynamicfacetsConfiguration) ?
                             configMenu
                             : ''}
-                        <a href="https://github.com/charlie42/ld-r-mhdb/tree/affectiverse-master" className="ui item link">
+                        <a href="https://github.com/ChildMindInstitute/mhdb-admin/tree/affectiverse-master" className="ui item link">
                             <i className="github circle icon"></i> Github
                         </a>
                         {userMenu}

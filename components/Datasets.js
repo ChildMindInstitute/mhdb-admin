@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import {navigateAction, NavLink} from 'fluxible-router';
 import {connectToStores} from 'fluxible-addons-react';
 import SearchInput, {createFilter} from 'react-search-input'
-import {enableAuthentication, defaultDatasetURI, enableAddingNewDatasets, enableDatasetAnnotation, enableQuerySaveImport} from '../configs/general';
+import {enableAuthentication, defaultDatasetURI, enableAddingNewDatasets, enableDatasetAnnotation, enableQuerySaveImport, displayResourceLookupOnDatasetsPage} from '../configs/general';
 import {checkViewAccess, checkEditAccess} from '../services/utils/accessManagement';
 import DatasetsStore from '../stores/DatasetsStore';
 import URIUtil from './utils/URIUtil';
@@ -168,7 +168,6 @@ class Datasets extends React.Component {
             <div className="ui fluid container ldr-padding-more" ref="datasets">
                 <div className="ui grid">
                     <div className="ui column">
-                        {dss.length ? <div>{info}</div> : null}
                         <div className="ui segment">
                             <h2><span className="ui big black circular label">{dss.length}</span> Datasets</h2>
                             {this.props.DatasetsStore.datasetsList.length > 7 ?
@@ -188,7 +187,7 @@ class Datasets extends React.Component {
                         <div className= "ui bottom attached">
                             {datasetActionsDIV}
                         </div>
-                        {dss.length ?
+                        {dss.length && displayResourceLookupOnDatasetsPage ?
                             <div className="ui grey message form">
                                 <select ref="datasetURI" className="ui search dropdown">
                                     {optionsList}
