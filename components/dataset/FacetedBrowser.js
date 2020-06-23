@@ -18,14 +18,14 @@ class FacetedBrowser extends React.Component {
         this.state = {selection: {}, expandedFacet: 0, showAllResources: 0, expandedResources: 0, hideFirstCol: false, invert: {}, range:{}, datasetConfig: {}, analysisProps: {}, pivotConstraint: '', envState: this.props.FacetedBrowserStore.envState, importedEnvState: this.props.FacetedBrowserStore.importedEnvState};
     }
     handleCreateResource(datasetURI, templateResource, openInNewWindows, user) {
-        let resourceLabel = prompt("New resource label:")
+        let resourceLabel = prompt('New resource label:')
         this.context.executeAction(createResource, {
             dataset: datasetURI,
             templateResource: templateResource,
             openInNewWindows: openInNewWindows,
             resourceLabel: resourceLabel,
         });
-        let message = "New resource based on the template resource is created. You can make your changes. Admin will review them soon."
+        let message = 'New resource based on the template resource is created. You can make your changes. Admin will review them soon.'
         showNotification(user, message)
     }
     componentDidMount() {

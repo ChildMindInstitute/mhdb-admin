@@ -22,7 +22,7 @@ export default {
                 allowNewValue: 1,
                 allowPropertyDelete: 1,
                 objectIViewer: ['PrefixBasedView'],
-                objectIEditor: ['PrefixBasedInput'],
+                objectIEditor: ['PrefixBasedInput'], 
                 displayQueries: 0,
             },
             'project_test': {

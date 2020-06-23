@@ -140,8 +140,8 @@ let datasetShouldBeEditable = (ds) => {
 }
 // All new users can edit all datasets by default
 let prepareEditorOfDatasetsStrings = (blanknode, blanknodeStartingID) => {
-    let blanknodes = ""
-    let scopes = ""
+    let blanknodes = ''
+    let scopes = ''
     let blanknodeID = blanknodeStartingID
     for(let ds in reactorConfig.config.dataset){
         if(datasetShouldBeEditable(ds)){

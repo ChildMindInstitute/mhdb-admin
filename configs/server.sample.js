@@ -37,7 +37,7 @@ export default {
             host: '51.68.79.244', port: 7200, path: '/repositories/prod', graphName: 'default', endpointType: 'graphdb', username: 'admin', password: 'admin'
         },
         'chills_papers': {
-           host: '51.68.79.244', port: 7200, path: '/repositories/test', graphName: 'default', endpointType: 'graphdb', username: 'admin', password: 'admin'
+            host: '51.68.79.244', port: 7200, path: '/repositories/test', graphName: 'default', endpointType: 'graphdb', username: 'admin', password: 'admin'
         },
         'chills_claims': {
             host: '51.68.79.244', port: 7200, path: '/repositories/test', graphName: 'default', endpointType: 'graphdb', username: 'admin', password: 'admin'

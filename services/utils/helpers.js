@@ -2,7 +2,7 @@ import {sparqlEndpoint} from '../../configs/server';
 import {defaultDatasetURI, enableDynamicServerConfiguration, enableAuthentication} from '../../configs/general';
 import validUrl from 'valid-url';
 import queryString from 'query-string';
-import toaster from "toasted-notes";
+import toaster from 'toasted-notes';
 
 let prepareStaticDGFunc = (datasetURI)=>{
     let d = datasetURI, g = datasetURI;

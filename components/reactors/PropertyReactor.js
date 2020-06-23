@@ -28,7 +28,7 @@ class PropertyReactor extends React.Component {
             propertyPath: this.props.propertyPath,
             propertyURI: this.props.spec.propertyURI
         });
-        let message = "hasPendingPropertyDelete property will be added to Actions tab. Admin will confirm the changes soon."
+        let message = 'hasPendingPropertyDelete property will be added to Actions tab. Admin will confirm the changes soon.'
         showNotification(user, message);
     }
     handleDeleteIndividualObject(objectValue, valueType, dataType, user) {
@@ -49,7 +49,7 @@ class PropertyReactor extends React.Component {
             valueType: valueType,
             dataType: dataType
         });
-        let message = "hasPendingPropertyDelete property will be added to Actions tab. Admin will confirm the changes soon."
+        let message = 'hasPendingPropertyDelete property will be added to Actions tab. Admin will confirm the changes soon.'
         showNotification(user, message);
     }
     handleDeleteAggObject(changes) {
@@ -93,7 +93,7 @@ class PropertyReactor extends React.Component {
             dataType: dataType
         });
         this.setState({inNewValueMode: 0});
-        let message = "hasPendingPropertyCreate property will be added to Actions tab. Admin will confirm the changes soon."
+        let message = 'hasPendingPropertyCreate property will be added to Actions tab. Admin will confirm the changes soon.'
         showNotification(user, message);
     }
     handleUpdateIndividualObject(oldObjectValue, newObjectValue, valueType, dataType, user) {
@@ -115,7 +115,7 @@ class PropertyReactor extends React.Component {
             valueType: valueType,
             dataType: dataType
         });
-        let message = "hasPendingPropertyDelete and hasPendingPropertyCreate properties with old and new values will be added to Actions tab. Admin will confirm the changes soon."
+        let message = 'hasPendingPropertyDelete and hasPendingPropertyCreate properties with old and new values will be added to Actions tab. Admin will confirm the changes soon.'
         showNotification(user, message);
     }
     handleUpdateAggObject(changes) {

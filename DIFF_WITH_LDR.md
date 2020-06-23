@@ -1,4 +1,3 @@
-- install eslint
 - add conf files to repo
 - validation of changes by admin
     - notifications

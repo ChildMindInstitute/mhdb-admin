@@ -2,10 +2,10 @@
 import {getQueryDataTypeValue} from '../utils/helpers';
 class ResourceQuery{
     constructor() {
-        this.hasPropertyPendingDeleteURI = "https://github.com/charlie42/ld-r-mhdb/blob/master/vocabulary/ld-r-mhdb.ttl#hasPropertyPendingDelete";
-        this.hasPropertyPendingCreateURI = "https://github.com/charlie42/ld-r-mhdb/blob/master/vocabulary/ld-r-mhdb.ttl#hasPropertyPendingCreate";
-        this.isPendingDeleteURI = "https://github.com/charlie42/ld-r-mhdb/blob/master/vocabulary/ld-r-mhdb.ttl#isPendingDelete";
-        this.isPendingCreateURI = "https://github.com/charlie42/ld-r-mhdb/blob/master/vocabulary/ld-r-mhdb.ttl#isPendingCreate";
+        this.hasPropertyPendingDeleteURI = 'https://github.com/charlie42/ld-r-mhdb/blob/master/vocabulary/ld-r-mhdb.ttl#hasPropertyPendingDelete';
+        this.hasPropertyPendingCreateURI = 'https://github.com/charlie42/ld-r-mhdb/blob/master/vocabulary/ld-r-mhdb.ttl#hasPropertyPendingCreate';
+        this.isPendingDeleteURI = 'https://github.com/charlie42/ld-r-mhdb/blob/master/vocabulary/ld-r-mhdb.ttl#isPendingDelete';
+        this.isPendingCreateURI = 'https://github.com/charlie42/ld-r-mhdb/blob/master/vocabulary/ld-r-mhdb.ttl#isPendingCreate';
         this.ignoredForPendingProperties = [this.hasPropertyPendingDeleteURI, this.hasPropertyPendingCreateURI, this.isPendingDeleteURI, this.isPendingDeleteURI];
     
         this.prefixes=`
@@ -65,8 +65,8 @@ class ResourceQuery{
         let {gStart, gEnd} = this.prepareGraphName(graphName);
         if(user && user.accountName !== 'open' && !parseInt(user.isSuperUser)){
             // if deleted not by superuser - add property isPendingDelete
-            let isPendingDeleteURI = "https://github.com/charlie42/ld-r-mhdb/blob/master/vocabulary/ld-r-mhdb.ttl#isPendingDelete"
-            return this.addTriple(endpointParameters, user, graphName, resourceURI, isPendingDeleteURI, "true")
+            let isPendingDeleteURI = 'https://github.com/charlie42/ld-r-mhdb/blob/master/vocabulary/ld-r-mhdb.ttl#isPendingDelete'
+            return this.addTriple(endpointParameters, user, graphName, resourceURI, isPendingDeleteURI, 'true')
         } else {
             this.query = `
             DELETE {
@@ -118,12 +118,12 @@ class ResourceQuery{
         if(user && user.accountName !== 'open' && !parseInt(user.isSuperUser)){
             userSt = ` ldr:createdBy <${user.id}> ;`;
             // if added not by superuser - add property isPendingCreate
-            isPendingCreate = ` ldr-mhdb:isPendingCreate "true" ;`;
+            isPendingCreate = ' ldr-mhdb:isPendingCreate "true" ;';
         }
         if(resourceLabel) {
             labelSt = ` rdfs:label "${resourceLabel}" ;`
             // don't user label from template resource
-            labelFilterSt = "&& ?p != rdfs:label"
+            labelFilterSt = '&& ?p != rdfs:label'
         }
         let date = new Date();
         let currentDate = date.toISOString(); //"2011-12-19T15:28:46.493Z"

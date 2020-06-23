@@ -33,7 +33,7 @@ class Resource extends React.Component {
                 dataset: datasetURI,
                 resourceURI: resourceURI
             });
-            let message = "isPendingDelete property will be added to Actions tab. Admin will delete the resouse soon."
+            let message = 'isPendingDelete property will be added to Actions tab. Admin will delete the resouse soon.'
             showNotification(user, message);
         }
         e.stopPropagation();

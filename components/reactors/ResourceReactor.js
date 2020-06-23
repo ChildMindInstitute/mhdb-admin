@@ -48,7 +48,7 @@ class ResourceReactor extends React.Component {
                 objectValue: this.state.newObjetValue
             });
         }
-        let message = "hasPendingPropertyCreate property will be added to Actions tab. Admin will confirm the changes soon."
+        let message = 'hasPendingPropertyCreate property will be added to Actions tab. Admin will confirm the changes soon.'
         showNotification(user, message);
     }
     handleNewPropertyEdit(v) {

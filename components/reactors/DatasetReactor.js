@@ -7,7 +7,7 @@ import getResourcesCount from '../../actions/getResourcesCount';
 import Dataset from '../dataset/Dataset';
 import cloneResource from '../../actions/cloneResource';
 import createResource from '../../actions/createResource';
-import toaster from "toasted-notes";
+import toaster from 'toasted-notes';
 
 class DatasetReactor extends React.Component {
     componentDidMount() {
@@ -25,7 +25,7 @@ class DatasetReactor extends React.Component {
             templateResource: templateResource
         });
         if(user && user.accountName !== 'open' && !parseInt(user.isSuperUser)) {
-            toaster.notify("New resource based on the template resource will be created. Admin will review the changes soon.", {
+            toaster.notify('New resource based on the template resource will be created. Admin will review the changes soon.', {
                 duration: 7000
             });
         }

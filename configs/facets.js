@@ -59,8 +59,8 @@ export default {
         },
         'project_test': {
             list: ['http://www.purl.org/mentalhealth/mhdb-resources#hasProjectCategory', 
-            'http://www.purl.org/mentalhealth/mhdb-resources#isMaintainedByGroup',
-            'http://www.purl.org/mentalhealth/mhdb-resources#isReferencedBy'],
+                'http://www.purl.org/mentalhealth/mhdb-resources#isMaintainedByGroup',
+                'http://www.purl.org/mentalhealth/mhdb-resources#isReferencedBy'],
             config: {
                 'http://www.purl.org/mentalhealth/mhdb-resources#hasProjectCategory': {
                     label: ['Category'],
