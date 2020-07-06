@@ -1,5 +1,6 @@
-- forbid add/edit for Actions properties, only leave delete
+- attribute each change to a user
 - highlight pending properties and resources (not yet approved) to differenciate from the rest
+- forbid add/edit for Actions properties, only leave delete
 - resource view/edit in pop-up or same page instead of new page
 - dynamic autocomplete 
 - implement aggregate edit

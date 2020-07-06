@@ -349,5 +349,9 @@ export default {
                 duration: 7000
             });
         }
+    },
+    getTodayXSDDate() {
+        let today = new Date().toJSON().slice(0,10)
+        return today;
     }
 }

@@ -1,12 +1,15 @@
 'use strict';
-import {getQueryDataTypeValue} from '../utils/helpers';
+import {getQueryDataTypeValue, getTodayXSDDate} from '../utils/helpers';
+
 class ResourceQuery{
     constructor() {
         this.hasPropertyPendingDeleteURI = 'https://github.com/charlie42/ld-r-mhdb/blob/master/vocabulary/ld-r-mhdb.ttl#hasPropertyPendingDelete';
         this.hasPropertyPendingCreateURI = 'https://github.com/charlie42/ld-r-mhdb/blob/master/vocabulary/ld-r-mhdb.ttl#hasPropertyPendingCreate';
         this.isPendingDeleteURI = 'https://github.com/charlie42/ld-r-mhdb/blob/master/vocabulary/ld-r-mhdb.ttl#isPendingDelete';
         this.isPendingCreateURI = 'https://github.com/charlie42/ld-r-mhdb/blob/master/vocabulary/ld-r-mhdb.ttl#isPendingCreate';
-        this.ignoredForPendingProperties = [this.hasPropertyPendingDeleteURI, this.hasPropertyPendingCreateURI, this.isPendingDeleteURI, this.isPendingDeleteURI];
+        this.lastModifiedByURI = 'https://github.com/charlie42/ld-r-mhdb/blob/master/vocabulary/ld-r-mhdb.ttl#lastModifiedBy';
+        this.hasLastModificationDateURI = 'https://github.com/charlie42/ld-r-mhdb/blob/master/vocabulary/ld-r-mhdb.ttl#hasLastModificationDate';
+        this.metaProperties = [this.hasPropertyPendingDeleteURI, this.hasPropertyPendingCreateURI, this.isPendingDeleteURI, this.isPendingDeleteURI, this.lastModifiedByURI, this.hasLastModificationDateURI];
     
         this.prefixes=`
         PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
@@ -43,6 +46,27 @@ class ResourceQuery{
             newResourceURI = datasetURI + prefix + Math.round(+new Date() / 1000);
         }
         return newResourceURI;
+    }
+    // When property is edited, the user who did the changes is added
+    buildLastModifiedByQuery(endpointParameters, user, graphName, resourceURI) {
+        let result = this.deleteTriple(endpointParameters, user, graphName, resourceURI, this.lastModifiedByURI, '') + 
+            ' ; ' +
+            this.addTriple(endpointParameters, user, graphName, resourceURI, this.lastModifiedByURI, user.id, 'uri')
+        return result;
+    }
+    // When property is edited, the user who did the changes is added
+    buildLastModificationDateQuery(endpointParameters, user, graphName, resourceURI) {
+        let date = getTodayXSDDate();
+        let result = this.deleteTriple(endpointParameters, user, graphName, resourceURI, this.hasLastModificationDateURI, '') + 
+            ' ; ' +
+            this.addTriple(endpointParameters, user, graphName, resourceURI, this.hasLastModificationDateURI, date, 'xsd:dateTime')
+        return result;
+    }
+    propertyIsMetaProperty(propertyURI) {
+        return this.metaProperties.includes(propertyURI);
+    }
+    userIsNotSuperUser(user) {
+        return user && user.accountName !== 'open' && !parseInt(user.isSuperUser);
     }
     getProperties(endpointParameters, graphName, resourceURI) {
         let {gStart, gEnd} = this.prepareGraphName(graphName);
@@ -242,72 +266,81 @@ class ResourceQuery{
         return this.query;
     }
     addTriple(endpointParameters, user, graphName, resourceURI, propertyURI, objectValue, valueType, dataType) {
+        console.log(propertyURI + this.propertyIsMetaProperty(propertyURI))
         //todo: consider different value types
         let newValue, tmp = {};
         let {gStart, gEnd} = this.prepareGraphName(graphName);
-        let hasPropertyPendingCreate = '';
-        if((user && user.accountName !== 'open' && !parseInt(user.isSuperUser)) &&
-            !this.ignoredForPendingProperties.includes(propertyURI)){
-            // if added not by superuser - add property isPendingCreate
-            hasPropertyPendingCreate=`;
-                ldr-mhdb:hasPropertyPendingCreate "${propertyURI} = ${objectValue}" `;
+        let metaPropertiesQuery = '';
+        if(!this.propertyIsMetaProperty(propertyURI)) {
+            metaPropertiesQuery += this.buildLastModificationDateQuery(endpointParameters, user, graphName, resourceURI);
+        }
+        if(this.userIsNotSuperUser(user) && !this.propertyIsMetaProperty(propertyURI)) {
+            metaPropertiesQuery += ' ; ' + this.buildLastModifiedByQuery(endpointParameters, user, graphName, resourceURI);
+            let propertyURIandValue = `${propertyURI} = ${objectValue}`
+            metaPropertiesQuery += ' ; ' + this.addTriple(endpointParameters, user, graphName, resourceURI, this.hasPropertyPendingCreateURI, propertyURIandValue)
         }
         tmp = getQueryDataTypeValue(valueType, dataType, objectValue);
         newValue = tmp.value;
         this.query = `
             INSERT DATA {
             ${gStart}
-                <${resourceURI}> <${propertyURI}> ${newValue} ${hasPropertyPendingCreate}.
+                <${resourceURI}> <${propertyURI}> ${newValue} .
             ${gEnd}
             }
         `;
-        return this.query;
+        return (metaPropertiesQuery ? (this.query + ' ; ' + metaPropertiesQuery) : this.query);
     }
     deleteTriple(endpointParameters, user, graphName, resourceURI, propertyURI, objectValue, valueType, dataType) {
         let dtype, newValue, tmp = {};
         let {gStart, gEnd} = this.prepareGraphName(graphName);
-        if(objectValue){
-            if((user && user.accountName !== 'open' && !parseInt(user.isSuperUser)) &&
-                !this.ignoredForPendingProperties.includes(propertyURI)){
-                // if deleted not by superuser - add property hasPropertyPendingDelete
-                let propertyURIandValue = `${propertyURI} = ${objectValue}`
-                return this.addTriple(endpointParameters, user, graphName, resourceURI, this.hasPropertyPendingDeleteURI, propertyURIandValue)
-            }
-            tmp = getQueryDataTypeValue(valueType, dataType, objectValue);
-            newValue = tmp.value;
-            dtype = tmp.dtype;
-            //if we just want to delete a specific value for multi-valued ones
-            this.query = `
-                DELETE {
-                    ${gStart}
-                        <${resourceURI}> <${propertyURI}> ?v .
-                    ${gEnd}
-                } WHERE {
-                    ${gStart}
-                        <${resourceURI}> <${propertyURI}> ?v .
-                        FILTER(${dtype}(?v)=${newValue})
-                    ${gEnd}
-                }
-            `;
-        }else{
-            if((user && user.accountName !== 'open' && !parseInt(user.isSuperUser)) &&
-                !this.ignoredForPendingProperties.includes(propertyURI)){
-                // if deleted not by superuser - add property hasPropertyPendingDelete
-                return this.addTriple(endpointParameters, user, graphName, resourceURI, this.hasPropertyPendingDeleteURI, propertyURI)
-            }
-            this.query = `
-                DELETE {
-                    ${gStart}
-                        <${resourceURI}> <${propertyURI}> ?z .
-                    ${gEnd}
-                } WHERE {
-                    ${gStart}
-                        <${resourceURI}> <${propertyURI}> ?z .
-                    ${gEnd}
-                }
-            `;
+        let metaPropertiesQuery = '';
+        if(!this.propertyIsMetaProperty(propertyURI)) {
+            metaPropertiesQuery += this.buildLastModificationDateQuery(endpointParameters, user, graphName, resourceURI);
         }
-        return this.query;
+        if(objectValue){
+            if(this.userIsNotSuperUser(user) && !this.propertyIsMetaProperty(propertyURI)){
+                metaPropertiesQuery += ' ; ' + this.buildLastModifiedByQuery(endpointParameters, user, graphName, resourceURI);
+                let propertyURIandValue = `${propertyURI} = ${objectValue}`
+                this.query = this.addTriple(endpointParameters, user, graphName, resourceURI, this.hasPropertyPendingDeleteURI, propertyURIandValue)
+            } else {
+                tmp = getQueryDataTypeValue(valueType, dataType, objectValue);
+                newValue = tmp.value;
+                dtype = tmp.dtype;
+                //if we just want to delete a specific value for multi-valued ones
+                this.query = `
+                    DELETE {
+                        ${gStart}
+                            <${resourceURI}> <${propertyURI}> ?v .
+                        ${gEnd}
+                    } WHERE {
+                        ${gStart}
+                            <${resourceURI}> <${propertyURI}> ?v .
+                            FILTER(${dtype}(?v)=${newValue})
+                        ${gEnd}
+                    }
+                `;
+            }
+            
+        }else{
+            if(this.userIsNotSuperUser(user) && !this.propertyIsMetaProperty(propertyURI)){
+                metaPropertiesQuery += ' ; ' + this.buildLastModifiedByQuery(endpointParameters, user, graphName, resourceURI);
+                // if deleted not by superuser - add property hasPropertyPendingDelete
+                this.query = this.addTriple(endpointParameters, user, graphName, resourceURI, this.hasPropertyPendingDeleteURI, propertyURI)
+            } else {
+                this.query = `
+                    DELETE {
+                        ${gStart}
+                            <${resourceURI}> <${propertyURI}> ?z .
+                        ${gEnd}
+                    } WHERE {
+                        ${gStart}
+                            <${resourceURI}> <${propertyURI}> ?z .
+                        ${gEnd}
+                    }
+                `;
+            }
+        }
+        return (metaPropertiesQuery ? (this.query + ' ; ' + metaPropertiesQuery) : this.query);
     }
     deleteTriples(endpointParameters, user, graphName, resourceURI, propertyURI, changes) {
         let self = this;
